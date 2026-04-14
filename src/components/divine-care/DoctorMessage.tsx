@@ -10,12 +10,15 @@ export default function DoctorMessage() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="doctor" className="py-20 bg-gradient-to-b from-white to-teal-50/50 relative" ref={ref}>
+    <section id="doctor" className="py-20 bg-gradient-to-b from-white to-teal-50/50 relative overflow-hidden" ref={ref}>
       {/* Subtle decorative elements */}
       <div className="absolute inset-0 pointer-events-none opacity-40">
         <div className="absolute top-0 left-0 w-64 h-64 bg-teal-100 rounded-full blur-[100px]" />
         <div className="absolute bottom-0 right-0 w-64 h-64 bg-amber-100 rounded-full blur-[100px]" />
       </div>
+
+      {/* Stethoscope SVG watermark */}
+      <Stethoscope className="absolute right-[5%] top-[30%] w-56 h-56 text-teal-200/[0.08] pointer-events-none -rotate-12" strokeWidth={0.7} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header - Guide Positioning */}
@@ -46,20 +49,27 @@ export default function DoctorMessage() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="relative"
           >
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl glow-teal">
-              <img
-                src="/images/doctor-portrait.png"
-                alt="Dr. Vikas Kr. Sahu - Physiotherapy Specialist"
-                className="w-full h-[480px] sm:h-[520px] object-cover object-top"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-teal-950/50 via-transparent to-transparent" />
+            {/* Decorative dot frame around image */}
+            <div className="p-2 border-[3px] border-dotted border-teal-300/30 rounded-[1.75rem]">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl glow-teal">
+                <img
+                  src="/images/doctor-portrait.png"
+                  alt="Dr. Vikas Kr. Sahu - Physiotherapy Specialist"
+                  className="w-full h-[480px] sm:h-[520px] object-cover object-top"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-teal-950/50 via-transparent to-transparent" />
+              </div>
             </div>
-            {/* Floating Badge 1 */}
+            {/* Floating Badge 1 - with float animation */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.5, delay: 0.6 }}
+              animate={isInView ? { opacity: 1, scale: 1, y: [0, -6, 0] } : {}}
+              transition={{
+                opacity: { duration: 0.5, delay: 0.6 },
+                scale: { duration: 0.5, delay: 0.6 },
+                y: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1.1 },
+              }}
               className="absolute -bottom-4 -right-4 bg-white rounded-2xl shadow-xl p-4 border border-teal-100"
             >
               <div className="flex items-center gap-3">
@@ -72,11 +82,15 @@ export default function DoctorMessage() {
                 </div>
               </div>
             </motion.div>
-            {/* Floating Badge 2 */}
+            {/* Floating Badge 2 - with float animation */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.5, delay: 0.7 }}
+              animate={isInView ? { opacity: 1, scale: 1, y: [0, -8, 0] } : {}}
+              transition={{
+                opacity: { duration: 0.5, delay: 0.7 },
+                scale: { duration: 0.5, delay: 0.7 },
+                y: { duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 1.2 },
+              }}
               className="absolute top-4 -left-4 bg-white rounded-2xl shadow-xl p-3 border border-teal-100"
             >
               <div className="flex items-center gap-2">
@@ -107,33 +121,41 @@ export default function DoctorMessage() {
               <p className="text-teal-600 font-medium mt-1">Founder & Chief Physiotherapist</p>
             </div>
 
-            {/* Quote */}
-            <div className="relative bg-gradient-to-br from-teal-50 to-white rounded-2xl p-6 border border-teal-100 shadow-sm">
+            {/* Quote - Enhanced with watermark + left border accent */}
+            <div className="relative bg-gradient-to-br from-teal-50 to-white rounded-2xl p-6 border border-teal-100 shadow-sm overflow-hidden">
+              {/* Large watermark quotation mark behind text */}
+              <Quote className="absolute -top-2 -right-2 h-32 w-32 text-teal-100/25 rotate-6 pointer-events-none" />
+
+              {/* Left border accent - gradient from teal to amber */}
+              <div className="absolute left-0 top-0 bottom-0 w-1 rounded-l-2xl" style={{
+                background: 'linear-gradient(180deg, #0d9488, #f59e0b)'
+              }} />
+
               <div className="absolute top-3 left-4">
                 <Quote className="h-10 w-10 text-teal-200/60" />
               </div>
-              <p className="text-teal-800 leading-[1.8] pl-6 pr-2 italic text-[15px]">
+              <p className="text-teal-800 leading-[1.8] pl-6 pr-2 italic text-[15px] relative z-10">
                 &ldquo;I welcome you to Divine Care. One of the unique clinic of its kind in Jamshedpur. Here, we have created a state of the art facilities to cater to Chronic disease. Our services are designed to international standards. We are thankful to the trust our clients have placed in us and happy that we have been able to deliver them. Our most important motto is a pleasant recuperation for the patients in an amicable environment. And We are glad that we have been able to achieve our motto with aplomb.&rdquo;
               </p>
             </div>
 
-            {/* Authority Badges */}
+            {/* Authority Badges - Enhanced with hover scale + glow */}
             <div className="grid grid-cols-3 gap-3">
-              <div className="bg-white rounded-xl p-3 border border-teal-100 shadow-sm card-hover-lift text-center">
+              <div className="bg-white rounded-xl p-3 border border-teal-100 shadow-sm text-center transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-teal-100/50 hover:border-teal-200">
                 <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center mx-auto mb-2">
                   <Award className="h-5 w-5 text-teal-600" />
                 </div>
                 <p className="font-bold text-teal-900 text-lg">500+</p>
                 <p className="text-[10px] text-teal-600">Treatments</p>
               </div>
-              <div className="bg-white rounded-xl p-3 border border-amber-100 shadow-sm card-hover-lift text-center">
+              <div className="bg-white rounded-xl p-3 border border-amber-100 shadow-sm text-center transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-amber-100/50 hover:border-amber-200">
                 <div className="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center mx-auto mb-2">
                   <Users className="h-5 w-5 text-amber-600" />
                 </div>
                 <p className="font-bold text-teal-900 text-lg">10+</p>
                 <p className="text-[10px] text-teal-600">Expert Team</p>
               </div>
-              <div className="bg-white rounded-xl p-3 border border-teal-100 shadow-sm card-hover-lift text-center">
+              <div className="bg-white rounded-xl p-3 border border-teal-100 shadow-sm text-center transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-teal-100/50 hover:border-teal-200">
                 <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center mx-auto mb-2">
                   <GraduationCap className="h-5 w-5 text-teal-600" />
                 </div>

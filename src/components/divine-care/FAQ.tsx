@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, Fragment } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -60,13 +60,14 @@ const faqs = [
   },
 ];
 
-const colorMap: Record<string, { bg: string; iconBg: string; iconText: string; border: string; hoverBorder: string }> = {
+const colorMap: Record<string, { bg: string; iconBg: string; iconText: string; border: string; hoverBorder: string; gradient: string }> = {
   emerald: {
     bg: "bg-emerald-50",
     iconBg: "bg-emerald-100",
     iconText: "text-emerald-600",
     border: "border-emerald-200",
     hoverBorder: "hover:border-emerald-300",
+    gradient: "linear-gradient(180deg, #10b981, #059669)",
   },
   amber: {
     bg: "bg-amber-50",
@@ -74,6 +75,7 @@ const colorMap: Record<string, { bg: string; iconBg: string; iconText: string; b
     iconText: "text-amber-600",
     border: "border-amber-200",
     hoverBorder: "hover:border-amber-300",
+    gradient: "linear-gradient(180deg, #f59e0b, #d97706)",
   },
   teal: {
     bg: "bg-teal-50",
@@ -81,6 +83,7 @@ const colorMap: Record<string, { bg: string; iconBg: string; iconText: string; b
     iconText: "text-teal-600",
     border: "border-teal-200",
     hoverBorder: "hover:border-teal-300",
+    gradient: "linear-gradient(180deg, #14b8a6, #0d9488)",
   },
 };
 
@@ -118,81 +121,103 @@ export default function FAQ() {
         </motion.div>
 
         {/* FAQ Accordion - Custom Design */}
-        <div className="space-y-4">
+        <div className="space-y-0">
           {faqs.map((faq, i) => {
             const colors = colorMap[faq.color] || colorMap.teal;
             const isOpen = openIndex === i;
             const FaqIcon = faq.icon;
 
             return (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
-              >
-                <div
-                  className={`rounded-2xl border-2 transition-all duration-300 overflow-hidden ${
-                    isOpen
-                      ? `${colors.bg} ${colors.border} shadow-lg`
-                      : `bg-white ${colors.border} ${colors.hoverBorder} hover:shadow-md`
-                  }`}
+              <Fragment key={i}>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.4, delay: i * 0.08 }}
                 >
-                  {/* Question - Clickable Header */}
-                  <button
-                    onClick={() => setOpenIndex(isOpen ? null : i)}
-                    className="w-full text-left px-6 py-5 flex items-center gap-4 group"
-                    aria-expanded={isOpen}
-                  >
-                    {/* Icon + Number */}
-                    <div className={`flex-shrink-0 w-10 h-10 rounded-xl ${colors.iconBg} flex items-center justify-center transition-transform duration-300 ${isOpen ? "scale-110" : "group-hover:scale-105"}`}>
-                      <FaqIcon className={`h-5 w-5 ${colors.iconText}`} />
-                    </div>
+                  <div className="relative py-3">
+                    {/* Left accent bar - expands on open */}
+                    <div
+                      className={`absolute left-0 top-3 bottom-3 rounded-full transition-all duration-300 ${
+                        isOpen ? "w-1 opacity-100" : "w-0 opacity-0"
+                      }`}
+                      style={{ background: colors.gradient }}
+                    />
 
-                    {/* Question Text */}
-                    <span className={`flex-1 font-semibold text-base sm:text-lg transition-colors ${isOpen ? "text-teal-900" : "text-teal-800 group-hover:text-teal-900"}`}>
-                      {faq.question}
-                    </span>
-
-                    {/* Chevron */}
-                    <div className={`flex-shrink-0 w-8 h-8 rounded-full ${isOpen ? "bg-teal-600" : "bg-teal-100 group-hover:bg-teal-200"} flex items-center justify-center transition-all duration-300`}>
-                      <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${isOpen ? "rotate-180 text-white" : "text-teal-600"}`} />
-                    </div>
-                  </button>
-
-                  {/* Answer - Animated Content */}
-                  <AnimatePresence>
-                    {isOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                    <div
+                      className={`rounded-2xl border-2 transition-all duration-300 overflow-hidden ml-2 ${
+                        isOpen
+                          ? `${colors.bg} ${colors.border} shadow-lg faq-inner-glow`
+                          : `bg-white ${colors.border} ${colors.hoverBorder} hover:shadow-md`
+                      } hover:scale-[1.01]`}
+                    >
+                      {/* Question - Clickable Header */}
+                      <button
+                        onClick={() => setOpenIndex(isOpen ? null : i)}
+                        className="w-full text-left px-6 py-5 flex items-center gap-4 group"
+                        aria-expanded={isOpen}
                       >
-                        <div className="px-6 pb-6 pl-20">
-                          <div className="bg-white/70 backdrop-blur-sm rounded-xl p-5 border border-white/50">
-                            <p className="text-teal-700 leading-relaxed text-[15px]">
-                              {faq.answer}
-                            </p>
-                          </div>
+                        {/* Question number indicator */}
+                        <span className="text-teal-300/50 font-mono text-[10px] font-bold tracking-wider select-none min-w-[18px]">
+                          {String(i + 1).padStart(2, '0')}
+                        </span>
+
+                        {/* Icon */}
+                        <div className={`flex-shrink-0 w-10 h-10 rounded-xl ${colors.iconBg} flex items-center justify-center transition-transform duration-300 ${isOpen ? "scale-110" : "group-hover:scale-105"}`}>
+                          <FaqIcon className={`h-5 w-5 ${colors.iconText}`} />
                         </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              </motion.div>
+
+                        {/* Question Text */}
+                        <span className={`flex-1 font-semibold text-base sm:text-lg transition-colors ${isOpen ? "text-teal-900" : "text-teal-800 group-hover:text-teal-900"}`}>
+                          {faq.question}
+                        </span>
+
+                        {/* Chevron */}
+                        <div className={`flex-shrink-0 w-8 h-8 rounded-full ${isOpen ? "bg-teal-600" : "bg-teal-100 group-hover:bg-teal-200"} flex items-center justify-center transition-all duration-300`}>
+                          <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${isOpen ? "rotate-180 text-white" : "text-teal-600"}`} />
+                        </div>
+                      </button>
+
+                      {/* Answer - Enhanced slide-down animation */}
+                      <AnimatePresence>
+                        {isOpen && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{
+                              height: { duration: 0.35, ease: [0.4, 0, 0.2, 1] },
+                              opacity: { duration: 0.25, ease: "easeOut" },
+                            }}
+                          >
+                            <div className="px-6 pb-6 pl-20">
+                              <div className="bg-white/70 backdrop-blur-sm rounded-xl p-5 border border-white/50">
+                                <p className="text-teal-700 leading-relaxed text-[15px]">
+                                  {faq.answer}
+                                </p>
+                              </div>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Gradient line separator between FAQ items */}
+                {i < faqs.length - 1 && <div className="gradient-separator mx-6" />}
+              </Fragment>
             );
           })}
         </div>
 
-        {/* CTA */}
+        {/* CTA - Enhanced with pulsing border */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.8 }}
           className="mt-12 text-center"
         >
-          <div className="relative bg-gradient-to-r from-teal-50 via-amber-50 to-teal-50 rounded-2xl p-8 border border-teal-100 overflow-hidden">
+          <div className="relative bg-gradient-to-r from-teal-50 via-amber-50 to-teal-50 rounded-2xl p-8 border-2 border-teal-200 overflow-hidden pulse-border-cta">
             {/* Decorative circles */}
             <div className="absolute -top-8 -right-8 w-24 h-24 bg-teal-200/30 rounded-full" />
             <div className="absolute -bottom-8 -left-8 w-20 h-20 bg-amber-200/30 rounded-full" />

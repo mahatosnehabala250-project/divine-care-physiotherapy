@@ -54,7 +54,7 @@ export default function WhyChooseUs() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="services" className="py-20 bg-gradient-to-b from-teal-50/50 to-white relative" ref={ref}>
+    <section id="services" className="py-20 bg-gradient-to-b from-teal-50/50 to-white relative overflow-hidden stripe-pattern" ref={ref}>
       {/* Decorative background */}
       <div className="absolute inset-0 pointer-events-none opacity-30">
         <div className="absolute top-10 right-0 w-80 h-80 bg-amber-200 rounded-full blur-[120px]" />
@@ -90,31 +90,39 @@ export default function WhyChooseUs() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="card-hover-lift"
+                className="card-hover-lift group"
               >
-                <Card className={`h-full rounded-2xl transition-all duration-300 ${
-                  feature.highlight
-                    ? "border-2 border-amber-300 bg-gradient-to-br from-amber-50 to-white shadow-md hover:shadow-xl glow-amber"
-                    : "border border-teal-100 hover:border-teal-300 hover:shadow-xl"
-                }`}>
-                  <CardContent className="p-5">
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-3 ${
-                      feature.highlight
-                        ? "bg-amber-100 text-amber-600 shadow-sm"
-                        : "bg-teal-100 text-teal-600 shadow-sm"
-                    }`}>
-                      <feature.icon className="h-6 w-6" />
-                    </div>
-                    {feature.highlight && (
-                      <Badge className="mb-2 bg-amber-100 text-amber-700 border-amber-200 text-xs shadow-sm">
-                        <CheckCircle2 className="h-3 w-3 mr-1" />
-                        Unique in Jamshedpur
-                      </Badge>
-                    )}
-                    <h3 className="font-bold text-teal-900 mb-1.5 text-lg">{feature.title}</h3>
-                    <p className="text-sm text-teal-600 leading-relaxed">{feature.description}</p>
-                  </CardContent>
-                </Card>
+                {feature.highlight ? (
+                  /* Highlight card: animated gradient border + pulsing glow */
+                  <div className="highlight-card-border glow-amber-pulse">
+                    <Card className="h-full rounded-[14px] border-0 shadow-none bg-gradient-to-br from-amber-50 to-white shine-effect overflow-hidden">
+                      <CardContent className="p-5 relative z-10">
+                        <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-3 bg-amber-100 text-amber-600 shadow-sm transition-transform duration-300 group-hover:rotate-[8deg]">
+                          <feature.icon className="h-6 w-6" />
+                        </div>
+                        <Badge className="mb-2 bg-amber-100 text-amber-700 border-amber-200 text-xs shadow-sm">
+                          <CheckCircle2 className="h-3 w-3 mr-1" />
+                          Unique in Jamshedpur
+                        </Badge>
+                        <h3 className="font-bold text-teal-900 mb-1.5 text-lg">{feature.title}</h3>
+                        <p className="text-sm text-teal-600 leading-relaxed">{feature.description}</p>
+                      </CardContent>
+                    </Card>
+                  </div>
+                ) : (
+                  /* Regular card: gradient border wrapper */
+                  <div className="rounded-2xl p-[2px] bg-gradient-to-br from-teal-200/50 via-teal-100/30 to-teal-200/50 hover:from-teal-300/60 hover:via-teal-200/40 hover:to-teal-300/60 transition-all duration-300">
+                    <Card className="h-full rounded-[14px] border-0 shadow-none bg-white shine-effect overflow-hidden">
+                      <CardContent className="p-5 relative z-10">
+                        <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-3 bg-teal-100 text-teal-600 shadow-sm transition-transform duration-300 group-hover:rotate-[8deg]">
+                          <feature.icon className="h-6 w-6" />
+                        </div>
+                        <h3 className="font-bold text-teal-900 mb-1.5 text-lg">{feature.title}</h3>
+                        <p className="text-sm text-teal-600 leading-relaxed">{feature.description}</p>
+                      </CardContent>
+                    </Card>
+                  </div>
+                )}
               </motion.div>
             ))}
           </div>
@@ -128,6 +136,10 @@ export default function WhyChooseUs() {
           >
             {/* Hijama Image */}
             <div className="relative rounded-3xl overflow-hidden shadow-xl group card-hover-lift">
+              {/* Decorative corner accent - teal triangle */}
+              <div className="absolute top-0 right-0 z-10 pointer-events-none">
+                <div className="w-0 h-0 border-t-[44px] border-t-teal-500/80 border-l-[44px] border-l-transparent" />
+              </div>
               <img
                 src="/images/hijama-cupping.png"
                 alt="Hijama Cupping Therapy at Divine Care"
@@ -144,6 +156,10 @@ export default function WhyChooseUs() {
 
             {/* Acupuncture Image */}
             <div className="relative rounded-3xl overflow-hidden shadow-xl group card-hover-lift">
+              {/* Decorative corner accent - teal triangle */}
+              <div className="absolute top-0 right-0 z-10 pointer-events-none">
+                <div className="w-0 h-0 border-t-[44px] border-t-teal-500/80 border-l-[44px] border-l-transparent" />
+              </div>
               <img
                 src="/images/acupuncture-treatment.png"
                 alt="Acupuncture Treatment at Divine Care"
@@ -159,7 +175,8 @@ export default function WhyChooseUs() {
             </div>
 
             {/* Quick CTA */}
-            <div className="bg-gradient-to-r from-teal-800 to-teal-700 rounded-2xl p-6 text-center shadow-xl relative overflow-hidden">
+            <div className="bg-gradient-to-r from-teal-800 to-teal-700 rounded-2xl p-6 text-center shadow-xl relative overflow-hidden wave-ripple-bg">
+              {/* Dot pattern */}
               <div className="absolute inset-0 opacity-10" style={{
                 backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
                 backgroundSize: '20px 20px'
