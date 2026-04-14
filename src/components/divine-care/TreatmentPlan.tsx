@@ -40,7 +40,7 @@ export default function TreatmentPlan() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white via-teal-50/30 to-white relative" ref={ref}>
+    <section id="plan" className="py-20 bg-gradient-to-b from-white via-teal-50/30 to-white relative" ref={ref}>
       {/* Subtle background texture */}
       <div className="absolute inset-0 pointer-events-none section-dots opacity-50" />
 
@@ -68,14 +68,14 @@ export default function TreatmentPlan() {
         <div className="grid md:grid-cols-3 gap-6 lg:gap-8 relative">
           {/* Connecting Line (Desktop) */}
           <div className="hidden md:block absolute top-[88px] left-[22%] right-[22%] h-[3px]">
-            <div className="w-full h-full bg-gradient-to-r from-teal-300 via-amber-300 to-teal-300 rounded-full" />
-            {/* Animated dots on the line */}
-            <motion.div
-              animate={{ left: ["0%", "100%"] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-              className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-amber-400 rounded-full shadow-lg"
-              style={{ left: "0%" }}
-            />
+            <div className="w-full h-full bg-gradient-to-r from-teal-200 via-amber-200 to-teal-200 rounded-full relative overflow-hidden">
+              {/* Animated flowing dot */}
+              <motion.div
+                animate={{ left: ["-5%", "105%"] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-amber-400 rounded-full shadow-lg shadow-amber-400/50"
+              />
+            </div>
           </div>
 
           {steps.map((step, i) => (
@@ -86,21 +86,26 @@ export default function TreatmentPlan() {
               transition={{ duration: 0.6, delay: i * 0.2 }}
               className="relative"
             >
-              <div className="bg-white rounded-3xl border-2 border-teal-100 p-8 text-center card-hover-lift hover:border-teal-200">
+              <div className="bg-white rounded-3xl border-2 border-teal-100 p-8 text-center card-hover-glow hover:border-teal-200 transition-all duration-300 relative overflow-hidden">
+                {/* Decorative corner gradient */}
+                <div className={`absolute top-0 right-0 w-24 h-24 rounded-bl-full opacity-10 ${
+                  step.color === "teal" ? "bg-teal-500" : "bg-amber-500"
+                }`} />
+
                 {/* Step Number Circle */}
                 <div className="relative inline-flex mb-6">
-                  <div className={`w-20 h-20 rounded-2xl flex items-center justify-center shadow-lg ${
+                  <div className={`w-20 h-20 rounded-2xl flex items-center justify-center shadow-lg transition-transform duration-300 hover:scale-105 ${
                     step.color === "teal"
                       ? "bg-gradient-to-br from-teal-500 to-teal-700"
                       : "bg-gradient-to-br from-amber-400 to-amber-600"
                   }`}>
                     <step.icon className="h-9 w-9 text-white" />
                   </div>
-                  <span className={`absolute -top-2 -right-2 w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shadow-md ${
+                  <span className={`absolute -top-2 -right-2 w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shadow-md breathing-glow ${
                     step.color === "teal"
                       ? "bg-teal-800 text-white"
                       : "bg-amber-700 text-white"
-                  }`}>
+                  }`} style={step.color === "teal" ? { animationDelay: "0.5s" } : { animationDelay: "1.5s" }}>
                     {step.number}
                   </span>
                 </div>
@@ -112,7 +117,7 @@ export default function TreatmentPlan() {
                 {/* Feature pills */}
                 <div className="flex flex-wrap justify-center gap-2">
                   {step.features.map((feature) => (
-                    <span key={feature} className={`text-xs px-3 py-1.5 rounded-full font-medium ${
+                    <span key={feature} className={`text-xs px-3 py-1.5 rounded-full font-medium transition-colors ${
                       step.color === "teal"
                         ? "bg-teal-50 text-teal-700 border border-teal-100"
                         : "bg-amber-50 text-amber-700 border border-amber-100"
@@ -134,7 +139,7 @@ export default function TreatmentPlan() {
           className="mt-14 text-center"
         >
           <a href="https://wa.me/9431757875" target="_blank" rel="noopener noreferrer">
-            <Button size="lg" className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white rounded-2xl px-10 h-14 text-base shadow-xl shadow-teal-600/20 hover:shadow-2xl hover:shadow-teal-600/30 transition-all duration-300 hover:scale-[1.02]">
+            <Button size="lg" className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white rounded-2xl px-10 h-14 text-base shadow-xl shadow-teal-600/20 hover:shadow-2xl hover:shadow-teal-600/30 transition-all duration-300 btn-hover-scale">
               <MessageCircle className="h-5 w-5 mr-2" />
               Start Your Recovery Today
               <ArrowRight className="h-5 w-5 ml-2" />

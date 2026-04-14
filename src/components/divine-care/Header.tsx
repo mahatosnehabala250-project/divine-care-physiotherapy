@@ -14,14 +14,36 @@ const navLinks = [
   { label: "Contact", href: "#contact" },
 ];
 
-export default function Header() {
+export default function Header({ onBookAppointment }: { onBookAppointment: () => void }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeHash, setActiveHash] = useState("");
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    // Track active section for nav highlighting
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveHash("#" + entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-20% 0px -60% 0px" }
+    );
+
+    navLinks.forEach(({ href }) => {
+      const el = document.querySelector(href);
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
+    };
   }, []);
 
   const handleNavClick = (href: string) => {
@@ -92,7 +114,11 @@ export default function Header() {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
-                className="px-4 py-2 text-sm font-medium text-teal-700 hover:text-teal-900 hover:bg-teal-50 rounded-lg transition-all duration-200"
+                className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 relative ${
+                  activeHash === link.href
+                    ? "text-teal-900 bg-teal-100/70 font-semibold"
+                    : "text-teal-700 hover:text-teal-900 hover:bg-teal-50"
+                }`}
               >
                 {link.label}
               </a>
@@ -101,17 +127,13 @@ export default function Header() {
 
           {/* CTA + Mobile Menu */}
           <div className="flex items-center gap-3">
-            <a
-              href="https://wa.me/9431757875"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden sm:inline-flex"
+            <Button
+              onClick={() => onBookAppointment()}
+              className="hidden sm:inline-flex bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white shadow-md hover:shadow-lg transition-all duration-200 rounded-xl px-5 btn-hover-scale"
             >
-              <Button className="bg-teal-600 hover:bg-teal-700 text-white shadow-md hover:shadow-lg transition-all duration-200 rounded-xl px-5">
-                <Phone className="h-4 w-4 mr-2" />
-                Book Appointment
-              </Button>
-            </a>
+              <Phone className="h-4 w-4 mr-2" />
+              Book Appointment
+            </Button>
 
             {/* Mobile Menu */}
             <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
@@ -142,17 +164,10 @@ export default function Header() {
                     ))}
                   </nav>
                   <div className="mt-8 space-y-3">
-                    <a
-                      href="https://wa.me/9431757875"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block"
-                    >
-                      <Button className="w-full bg-teal-600 hover:bg-teal-700 text-white rounded-xl">
-                        <Phone className="h-4 w-4 mr-2" />
-                        Book Appointment
-                      </Button>
-                    </a>
+                    <Button onClick={() => { setMobileOpen(false); onBookAppointment(); }} className="w-full bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white rounded-xl btn-hover-scale">
+                      <Phone className="h-4 w-4 mr-2" />
+                      Book Appointment
+                    </Button>
                     <a href="tel:9431757875" className="block">
                       <Button variant="outline" className="w-full border-teal-300 text-teal-700 rounded-xl">
                         <Phone className="h-4 w-4 mr-2" />

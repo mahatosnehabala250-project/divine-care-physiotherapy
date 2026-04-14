@@ -10,7 +10,7 @@ export default function DoctorMessage() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="py-20 bg-gradient-to-b from-white to-teal-50/50 relative" ref={ref}>
+    <section id="doctor" className="py-20 bg-gradient-to-b from-white to-teal-50/50 relative" ref={ref}>
       {/* Subtle decorative elements */}
       <div className="absolute inset-0 pointer-events-none opacity-40">
         <div className="absolute top-0 left-0 w-64 h-64 bg-teal-100 rounded-full blur-[100px]" />
@@ -51,6 +51,7 @@ export default function DoctorMessage() {
                 src="/images/doctor-portrait.png"
                 alt="Dr. Vikas Kr. Sahu - Physiotherapy Specialist"
                 className="w-full h-[480px] sm:h-[520px] object-cover object-top"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-teal-950/50 via-transparent to-transparent" />
             </div>

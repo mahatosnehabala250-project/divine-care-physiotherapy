@@ -132,6 +132,7 @@ export default function WhyChooseUs() {
                 src="/images/hijama-cupping.png"
                 alt="Hijama Cupping Therapy at Divine Care"
                 className="w-full h-60 sm:h-72 object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-teal-950/85 via-teal-900/30 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6">
@@ -147,6 +148,7 @@ export default function WhyChooseUs() {
                 src="/images/acupuncture-treatment.png"
                 alt="Acupuncture Treatment at Divine Care"
                 className="w-full h-60 sm:h-72 object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-teal-950/85 via-teal-900/30 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6">

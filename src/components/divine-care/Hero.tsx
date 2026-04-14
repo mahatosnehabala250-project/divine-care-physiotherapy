@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Phone, MessageCircle, ArrowDown, Shield, Users, Award, Clock, Star } from "lucide-react";
 
-export default function Hero() {
+export default function Hero({ onBookAppointment }: { onBookAppointment: () => void }) {
   return (
     <section id="home" className="relative min-h-[92vh] flex items-center overflow-hidden">
       {/* Background Image with Overlay */}
@@ -13,6 +13,7 @@ export default function Hero() {
           src="/images/hero-clinic.png"
           alt="Divine Care Physiotherapy Clinic Interior"
           className="w-full h-full object-cover"
+          loading="eager"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-teal-950/95 via-teal-900/90 to-teal-800/75" />
         <div className="absolute inset-0 bg-gradient-to-t from-teal-950/70 via-transparent to-transparent" />
@@ -60,11 +61,10 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="mt-8 text-4xl sm:text-5xl lg:text-[3.75rem] xl:text-6xl font-extrabold text-white leading-[1.1] tracking-tight text-shadow-hero"
           >
-            Kya Dard Ne Aapki{" "}
+            Kya Dard Ne Aapki 
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-300">
               Zindagi Rok Di
-            </span>{" "}
-            Hai?
+            </span> Hai?
           </motion.h1>
 
           {/* Sub-headline - Solution */}
@@ -116,8 +116,9 @@ export default function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               className="group"
+              onClick={(e) => { e.preventDefault(); onBookAppointment(); }}
             >
-              <Button size="lg" className="relative bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-teal-900 font-bold rounded-2xl px-8 h-14 text-base shadow-xl shadow-amber-500/25 hover:shadow-2xl hover:shadow-amber-500/30 transition-all duration-300 group-hover:scale-[1.02]">
+              <Button size="lg" className="relative bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-teal-900 font-bold rounded-2xl px-8 h-14 text-base shadow-xl shadow-amber-500/25 hover:shadow-2xl hover:shadow-amber-500/30 transition-all duration-300 group-hover:scale-[1.02] btn-hover-scale">
                 <MessageCircle className="h-5 w-5 mr-2" />
                 Book Appointment
               </Button>

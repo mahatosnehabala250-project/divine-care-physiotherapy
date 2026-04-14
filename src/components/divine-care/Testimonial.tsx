@@ -205,6 +205,7 @@ export default function Testimonial() {
                 src="/images/success-story.png"
                 alt="Patient recovery success story at Divine Care"
                 className="w-full h-48 sm:h-56 object-cover"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-teal-900/70 via-transparent to-transparent" />
               <div className="absolute bottom-4 left-4 right-4">

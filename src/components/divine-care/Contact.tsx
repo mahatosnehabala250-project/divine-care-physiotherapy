@@ -43,13 +43,13 @@ const contactInfo = [
     icon: MapPin,
     label: "Address",
     value: "4th Floor, Sulata Mala Complex, Pennar Road, Near Laxmi Vilash Bank, Sakchi, Jamshedpur – 831001",
-    href: "#",
+    href: "https://maps.google.com/?q=Divine+Care+Physiotherapy+Sakchi+Jamshedpur",
   },
   {
     icon: Clock,
     label: "Hours",
     value: "Mon-Sat: 9:00 AM – 8:00 PM",
-    href: "#",
+    href: "",
   },
 ];
 
@@ -107,8 +107,14 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-b from-teal-50/50 to-white" ref={ref}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-20 bg-gradient-to-b from-teal-50/50 via-white to-teal-50/30 relative" ref={ref}>
+      {/* Decorative background */}
+      <div className="absolute inset-0 pointer-events-none opacity-30">
+        <div className="absolute top-10 right-0 w-80 h-80 bg-teal-200 rounded-full blur-[120px]" />
+        <div className="absolute bottom-10 left-0 w-80 h-80 bg-amber-200 rounded-full blur-[120px]" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -126,6 +132,15 @@ export default function Contact() {
           <p className="mt-3 text-teal-600 max-w-xl mx-auto">
             Aaj hi appointment book karein — kyunki har din ka dard, ek din zyada ho raha hai.
           </p>
+          {/* Trust badges */}
+          <div className="flex flex-wrap justify-center gap-3 mt-5">
+            {["Free Consultation", "Same Day Response", "No Obligation"].map((badge) => (
+              <span key={badge} className="inline-flex items-center gap-1.5 text-xs font-medium bg-teal-100 text-teal-700 px-3 py-1.5 rounded-full">
+                <CheckCircle2 className="h-3 w-3" />
+                {badge}
+              </span>
+            ))}
+          </div>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-10">
@@ -135,11 +150,19 @@ export default function Contact() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7 }}
           >
-            <Card className="rounded-3xl border-2 border-teal-100 shadow-lg">
+            <Card className="rounded-3xl border-2 border-teal-100 shadow-lg relative overflow-hidden">
+              {/* Decorative top bar */}
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-500 via-amber-400 to-teal-500" />
               <CardContent className="p-8">
                 {submitted ? (
                   <div className="text-center py-12">
-                    <CheckCircle2 className="h-16 w-16 text-teal-500 mx-auto mb-4" />
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                    >
+                      <CheckCircle2 className="h-16 w-16 text-teal-500 mx-auto mb-4" />
+                    </motion.div>
                     <h3 className="text-2xl font-bold text-teal-900 mb-2">Shukriya!</h3>
                     <p className="text-teal-600 mb-6">
                       Aapka message mil gaya hai. Hum 24 ghante ke andar aapse contact karenge.
@@ -147,7 +170,7 @@ export default function Contact() {
                     <Button
                       onClick={() => setSubmitted(false)}
                       variant="outline"
-                      className="border-teal-300 text-teal-700 rounded-xl"
+                      className="border-teal-300 text-teal-700 rounded-xl btn-hover-scale"
                     >
                       Aur Message Bhejein
                     </Button>
@@ -222,7 +245,7 @@ export default function Contact() {
                     <Button
                       type="submit"
                       disabled={loading}
-                      className="w-full bg-teal-600 hover:bg-teal-700 text-white rounded-xl h-12 text-base shadow-lg"
+                      className="w-full bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white rounded-xl h-12 text-base shadow-lg btn-hover-scale"
                     >
                       {loading ? (
                         <Loader2 className="h-5 w-5 animate-spin mr-2" />
@@ -236,9 +259,12 @@ export default function Contact() {
 
                 {/* WhatsApp Quick Option */}
                 <div className="mt-6 pt-6 border-t border-teal-100 text-center">
-                  <p className="text-sm text-teal-600 mb-3">Ya phir directly WhatsApp karein:</p>
+                  <div className="flex items-center justify-center gap-2 mb-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full pulse-dot" />
+                    <p className="text-sm text-teal-600 font-medium">Ya phir directly WhatsApp karein:</p>
+                  </div>
                   <a href="https://wa.me/9431757875" target="_blank" rel="noopener noreferrer">
-                    <Button className="bg-green-600 hover:bg-green-700 text-white rounded-xl">
+                    <Button className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white rounded-xl shadow-md btn-hover-scale">
                       <MessageCircle className="h-4 w-4 mr-2" />
                       WhatsApp Pe Message Karein
                     </Button>
@@ -257,21 +283,37 @@ export default function Contact() {
           >
             {/* Contact Details */}
             <div className="space-y-3">
-              {contactInfo.map((item, i) => (
-                <a
-                  key={i}
-                  href={item.href}
-                  className="flex items-start gap-4 p-4 bg-white rounded-2xl border border-teal-100 hover:border-teal-200 hover:shadow-md transition-all group"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-teal-100 flex items-center justify-center flex-shrink-0 group-hover:bg-teal-200 transition-colors">
-                    <item.icon className="h-5 w-5 text-teal-600" />
+              {contactInfo.map((item, i) => {
+                const content = (
+                  <>
+                    <div className="w-10 h-10 rounded-xl bg-teal-100 flex items-center justify-center flex-shrink-0 group-hover:bg-teal-200 transition-colors">
+                      <item.icon className="h-5 w-5 text-teal-600" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold text-teal-500 uppercase tracking-wider">{item.label}</p>
+                      <p className="text-teal-800 text-sm">{item.value}</p>
+                    </div>
+                  </>
+                );
+                return item.href ? (
+                  <a
+                    key={i}
+                    href={item.href}
+                    target={item.href.startsWith("http") ? "_blank" : undefined}
+                    rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="flex items-start gap-4 p-4 bg-white rounded-2xl border border-teal-100 hover:border-teal-200 hover:shadow-md transition-all group"
+                  >
+                    {content}
+                  </a>
+                ) : (
+                  <div
+                    key={i}
+                    className="flex items-start gap-4 p-4 bg-white rounded-2xl border border-teal-100"
+                  >
+                    {content}
                   </div>
-                  <div>
-                    <p className="text-xs font-semibold text-teal-500 uppercase tracking-wider">{item.label}</p>
-                    <p className="text-teal-800 text-sm">{item.value}</p>
-                  </div>
-                </a>
-              ))}
+                );
+              })}
             </div>
 
             {/* Google Map */}
@@ -289,14 +331,19 @@ export default function Contact() {
             </div>
 
             {/* Emergency Note */}
-            <div className="bg-amber-50 rounded-2xl p-5 border border-amber-200">
-              <p className="text-amber-800 font-semibold flex items-center gap-2 mb-1">
-                <Phone className="h-4 w-4" />
+            <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl p-6 border border-amber-200 shadow-sm relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-16 h-16 bg-amber-200/50 rounded-full -translate-y-1/2 translate-x-1/2" />
+              <p className="text-amber-800 font-bold flex items-center gap-2 mb-2 text-lg">
+                <Phone className="h-5 w-5" />
                 Emergency ya Quick Appointment?
               </p>
-              <p className="text-amber-700 text-sm">
-                Seedha call karein: <a href="tel:9431757875" className="font-bold underline">9431757875</a> — hum turant respond karenge.
+              <p className="text-amber-700 text-sm leading-relaxed">
+                Seedha call karein: <a href="tel:9431757875" className="font-bold underline hover:text-amber-900 transition-colors">9431757875</a> — hum turant respond karenge.
               </p>
+              <div className="mt-3 flex items-center gap-2 text-xs text-amber-600">
+                <Clock className="h-3.5 w-3.5" />
+                <span>Mon-Sat, 9AM-8PM • Emergency 24/7 available</span>
+              </div>
             </div>
           </motion.div>
         </div>

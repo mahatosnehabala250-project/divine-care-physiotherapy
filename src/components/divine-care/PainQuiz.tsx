@@ -132,7 +132,7 @@ export default function PainQuiz() {
 
   if (!started) {
     return (
-      <section className="py-20 bg-gradient-to-b from-white to-teal-50/50 relative overflow-hidden">
+      <section id="pain-quiz" className="py-20 bg-gradient-to-b from-white to-teal-50/50 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none opacity-30">
           <div className="absolute top-10 left-10 w-60 h-60 bg-amber-200 rounded-full blur-[100px]" />
           <div className="absolute bottom-10 right-10 w-60 h-60 bg-teal-200 rounded-full blur-[100px]" />
@@ -200,7 +200,7 @@ export default function PainQuiz() {
     const topResult = results[0];
 
     return (
-      <section className="py-20 bg-gradient-to-b from-white to-teal-50/50 relative overflow-hidden">
+      <section id="pain-quiz" className="py-20 bg-gradient-to-b from-white to-teal-50/50 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none opacity-30">
           <div className="absolute top-10 left-10 w-60 h-60 bg-amber-200 rounded-full blur-[100px]" />
           <div className="absolute bottom-10 right-10 w-60 h-60 bg-teal-200 rounded-full blur-[100px]" />
@@ -306,7 +306,7 @@ export default function PainQuiz() {
   }
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-teal-50/50 relative overflow-hidden">
+    <section id="pain-quiz" className="py-20 bg-gradient-to-b from-white to-teal-50/50 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none opacity-30">
         <div className="absolute top-10 left-10 w-60 h-60 bg-amber-200 rounded-full blur-[100px]" />
         <div className="absolute bottom-10 right-10 w-60 h-60 bg-teal-200 rounded-full blur-[100px]" />

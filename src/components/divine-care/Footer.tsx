@@ -19,9 +19,9 @@ const conditions = [
 ];
 
 const socialLinks = [
-  { icon: Instagram, label: "Instagram", href: "#" },
-  { icon: Facebook, label: "Facebook", href: "#" },
-  { icon: Youtube, label: "YouTube", href: "#" },
+  { icon: Instagram, label: "Instagram", href: "https://instagram.com/divinecarejsr" },
+  { icon: Facebook, label: "Facebook", href: "https://facebook.com/divinecarejsr" },
+  { icon: Youtube, label: "YouTube", href: "https://youtube.com/@divinecarejsr" },
   { icon: MessageCircle, label: "WhatsApp", href: "https://wa.me/9431757875" },
 ];
 

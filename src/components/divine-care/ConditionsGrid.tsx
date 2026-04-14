@@ -147,8 +147,14 @@ export default function ConditionsGrid() {
   const [selected, setSelected] = useState<Condition | null>(null);
 
   return (
-    <section id="conditions" className="py-20 bg-white" ref={ref}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="conditions" className="py-20 bg-white relative" ref={ref}>
+      {/* Subtle decorative background */}
+      <div className="absolute inset-0 pointer-events-none opacity-30">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-teal-100 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-amber-100 rounded-full blur-[120px]" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -178,14 +184,19 @@ export default function ConditionsGrid() {
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
               <Card
-                className="group h-full cursor-pointer border-2 border-teal-100 hover:border-teal-300 hover:shadow-xl transition-all duration-300 rounded-2xl overflow-hidden card-hover-lift"
+                className="group h-full cursor-pointer border-2 border-teal-100 hover:border-amber-300 hover:shadow-xl transition-all duration-300 rounded-2xl overflow-hidden card-hover-lift shine-effect"
                 onClick={() => setSelected(condition)}
               >
+                {/* Top gradient accent */}
+                <div className="h-1.5 bg-gradient-to-r from-teal-400 via-amber-400 to-teal-400 opacity-60 group-hover:opacity-100 transition-opacity" />
                 <CardHeader className="pb-3">
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${iconColors[i]} group-hover:scale-110 transition-transform`}>
-                    <condition.icon className="h-6 w-6" />
+                  <div className="flex items-center justify-between">
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${iconColors[i]} group-hover:scale-110 transition-transform shadow-sm`}>
+                      <condition.icon className="h-6 w-6" />
+                    </div>
+                    <ArrowRight className="h-5 w-5 text-teal-300 group-hover:text-amber-500 group-hover:translate-x-1 transition-all duration-300" />
                   </div>
-                  <h3 className="text-xl font-bold text-teal-900 mt-3">{condition.title}</h3>
+                  <h3 className="text-xl font-bold text-teal-900 mt-3 group-hover:text-teal-700 transition-colors">{condition.title}</h3>
                 </CardHeader>
                 <CardContent className="pb-3">
                   <p className="text-sm text-teal-700 leading-relaxed italic mb-3">
@@ -208,7 +219,7 @@ export default function ConditionsGrid() {
                 <CardFooter>
                   <Button
                     variant="ghost"
-                    className="text-teal-600 hover:text-teal-800 hover:bg-teal-50 p-0 h-auto font-semibold group/btn"
+                    className="text-teal-600 hover:text-amber-600 hover:bg-amber-50 p-0 h-auto font-semibold group/btn"
                   >
                     Learn More <ArrowRight className="h-4 w-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
                   </Button>
