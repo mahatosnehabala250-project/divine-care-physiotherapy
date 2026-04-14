@@ -7,11 +7,13 @@ import UrgencyBanner from "@/components/divine-care/UrgencyBanner";
 import HealthTipsTicker from "@/components/divine-care/HealthTipsTicker";
 import DoctorMessage from "@/components/divine-care/DoctorMessage";
 import Stats from "@/components/divine-care/Stats";
+import BodyMap from "@/components/divine-care/BodyMap";
 import ConditionsGrid from "@/components/divine-care/ConditionsGrid";
 import WhyChooseUs from "@/components/divine-care/WhyChooseUs";
 import VirtualTour from "@/components/divine-care/VirtualTour";
 import TreatmentPlan from "@/components/divine-care/TreatmentPlan";
 import TreatmentComparison from "@/components/divine-care/TreatmentComparison";
+import TreatmentPackages from "@/components/divine-care/TreatmentPackages";
 import TreatmentTimeline from "@/components/divine-care/TreatmentTimeline";
 import WhyWait from "@/components/divine-care/WhyWait";
 import PainQuiz from "@/components/divine-care/PainQuiz";
@@ -32,6 +34,8 @@ import AppointmentModal from "@/components/divine-care/AppointmentModal";
 import PageNavDots from "@/components/divine-care/PageNavDots";
 import JsonLd from "@/components/divine-care/JsonLd";
 import CookieConsent from "@/components/divine-care/CookieConsent";
+import VideoTestimonials from "@/components/divine-care/VideoTestimonials";
+import QuickConsult from "@/components/divine-care/QuickConsult";
 
 export default function Home() {
   const [appointmentOpen, setAppointmentOpen] = useState(false);
@@ -48,16 +52,19 @@ export default function Home() {
         <HealthTipsTicker />
         <DoctorMessage />
         <Stats />
+        <BodyMap />
         <ConditionsGrid />
         <WhyChooseUs />
         <VirtualTour />
         <TreatmentPlan />
         <TreatmentComparison />
+        <TreatmentPackages />
         <TreatmentTimeline />
         <WhyWait />
         <PainQuiz />
         <BeforeAfter />
         <SuccessStories />
+        <VideoTestimonials />
         <Testimonial />
         <ClinicGallery />
         <LivePatientCounter />
@@ -66,6 +73,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
+      <QuickConsult />
       <WhatsAppButton />
       <BackToTop />
       <StickyMobileCTA />
