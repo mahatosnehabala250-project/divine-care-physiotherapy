@@ -25,6 +25,7 @@ interface Condition {
   failureCost: string;
   successVision: string;
   plan: { step: string; desc: string }[];
+  painLevel: number;
 }
 
 const conditions: Condition[] = [
@@ -44,6 +45,7 @@ const conditions: Condition[] = [
       { step: "Treat", desc: "Personalized plan — Ultrasound, Quad exercises, Kinesiology Taping, aur Acupuncture" },
       { step: "Recover", desc: "Gradually aapka dard kam hoga, movement aayega, aur aap wapas normal life jiyenge" },
     ],
+    painLevel: 80,
   },
   {
     id: "neck-pain",
@@ -61,6 +63,7 @@ const conditions: Condition[] = [
       { step: "Heal", desc: "Chiropractic adjustments, tissue massage, aur targeted exercises se dard khatam hoga" },
       { step: "Strengthen", desc: "Posture correction aur daily exercises se permanent relief milega" },
     ],
+    painLevel: 70,
   },
   {
     id: "shoulder-pain",
@@ -78,6 +81,7 @@ const conditions: Condition[] = [
       { step: "Treat", desc: "TENS, Laser therapy, aur Manual Therapy se inflammation kam aur movement aayega" },
       { step: "Restore", desc: "Progressive exercises se full range of motion wapas aayega aur pain permanent khatam hoga" },
     ],
+    painLevel: 65,
   },
   {
     id: "back-pain",
@@ -95,6 +99,7 @@ const conditions: Condition[] = [
       { step: "Heal", desc: "Manual therapy, core exercises, aur sciatic nerve treatment se dard se azaadi" },
       { step: "Protect", desc: "Posture training aur daily routine se permanent relief aur future protection" },
     ],
+    painLevel: 90,
   },
   {
     id: "stroke-rehab",
@@ -112,6 +117,7 @@ const conditions: Condition[] = [
       { step: "Rehabilitate", desc: "Personalized rehab program — motor re-learning, gait training, aur FES therapy" },
       { step: "Empower", desc: "Gradually independence badhega — daily tasks khud karna, family ke saath better life" },
     ],
+    painLevel: 95,
   },
   {
     id: "disc-bulge",
@@ -129,6 +135,7 @@ const conditions: Condition[] = [
       { step: "Decompress & Heal", desc: "Joint mobilisation, McKenzie therapy, aur traction se disc pressure kam hoga aur healing shuru" },
       { step: "Stabilise & Prevent", desc: "Core stabilisation exercises se spine strong hogi aur future disc problems se bachaav" },
     ],
+    painLevel: 85,
   },
 ];
 
@@ -141,6 +148,15 @@ const iconColors = [
   "bg-amber-100 text-amber-600",
 ];
 
+const painLevelColors = [
+  "from-teal-400 via-amber-400 to-rose-400",
+  "from-teal-400 via-amber-400 to-amber-500",
+  "from-teal-400 via-amber-300 to-amber-400",
+  "from-teal-400 via-rose-400 to-rose-500",
+  "from-rose-400 via-rose-500 to-rose-600",
+  "from-amber-400 via-rose-400 to-rose-500",
+];
+
 export default function ConditionsGrid() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -148,7 +164,8 @@ export default function ConditionsGrid() {
 
   return (
     <section id="conditions" className="py-20 bg-white relative" ref={ref}>
-      {/* Subtle decorative background */}
+      {/* Subtle decorative background with dot pattern */}
+      <div className="absolute inset-0 pointer-events-none bg-pattern-dots opacity-60" />
       <div className="absolute inset-0 pointer-events-none opacity-30">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-teal-100 rounded-full blur-[120px]" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-amber-100 rounded-full blur-[120px]" />
@@ -182,24 +199,29 @@ export default function ConditionsGrid() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="highlight-card-border group/card-wrapper rounded-2xl"
             >
               <Card
-                className="group h-full cursor-pointer border-2 border-teal-100 hover:border-amber-300 hover:shadow-xl transition-all duration-300 rounded-2xl overflow-hidden card-hover-lift shine-effect"
+                className="h-full cursor-pointer border-0 rounded-[0.9rem] hover:shadow-xl transition-all duration-300 overflow-hidden tilt-card"
                 onClick={() => setSelected(condition)}
               >
                 {/* Top gradient accent */}
-                <div className="h-1.5 bg-gradient-to-r from-teal-400 via-amber-400 to-teal-400 opacity-60 group-hover:opacity-100 transition-opacity" />
-                <CardHeader className="pb-3">
+                <div className="h-1.5 bg-gradient-to-r from-teal-400 via-amber-400 to-teal-400 opacity-60 group-hover/card-wrapper:opacity-100 transition-opacity" />
+                <CardHeader className="pb-3 relative">
+                  {/* Number badge */}
+                  <span className="absolute top-2 left-3 text-[10px] font-bold text-teal-300/60 tracking-widest select-none">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                   <div className="flex items-center justify-between">
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${iconColors[i]} group-hover:scale-110 transition-transform shadow-sm`}>
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${iconColors[i]} group-hover/card-wrapper:scale-110 transition-transform shadow-sm`}>
                       <condition.icon className="h-6 w-6" />
                     </div>
-                    <ArrowRight className="h-5 w-5 text-teal-300 group-hover:text-amber-500 group-hover:translate-x-1 transition-all duration-300" />
+                    <ArrowRight className="h-5 w-5 text-teal-300 group-hover/card-wrapper:text-amber-500 group-hover/card-wrapper:translate-x-1 transition-all duration-300" />
                   </div>
-                  <h3 className="text-xl font-bold text-teal-900 mt-3 group-hover:text-teal-700 transition-colors">{condition.title}</h3>
+                  <h3 className="text-xl font-bold text-teal-900 mt-3 group-hover/card-wrapper:text-teal-700 transition-colors">{condition.title}</h3>
                 </CardHeader>
                 <CardContent className="pb-3">
-                  <p className="text-sm text-teal-700 leading-relaxed italic mb-3">
+                  <p className="text-sm text-teal-700 leading-relaxed italic mb-3 hover-underline cursor-default">
                     &ldquo;{condition.empathyHinglish}&rdquo;
                   </p>
                   <p className="text-sm text-teal-600">{condition.shortDesc}</p>
@@ -216,7 +238,7 @@ export default function ConditionsGrid() {
                     )}
                   </div>
                 </CardContent>
-                <CardFooter>
+                <CardFooter className="relative">
                   <Button
                     variant="ghost"
                     className="text-teal-600 hover:text-amber-600 hover:bg-amber-50 p-0 h-auto font-semibold group/btn"
@@ -224,6 +246,21 @@ export default function ConditionsGrid() {
                     Learn More <ArrowRight className="h-4 w-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
                   </Button>
                 </CardFooter>
+                {/* Pain level indicator bar */}
+                <div className="px-4 pb-3">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-[10px] text-teal-400/70 font-medium uppercase tracking-wider">Pain Severity</span>
+                    <span className="text-[10px] text-teal-400/70 font-semibold">{condition.painLevel}%</span>
+                  </div>
+                  <div className="w-full h-[3px] bg-teal-100 rounded-full overflow-hidden">
+                    <motion.div
+                      className={`h-full rounded-full bg-gradient-to-r ${painLevelColors[i]}`}
+                      initial={{ width: 0 }}
+                      animate={isInView ? { width: `${condition.painLevel}%` } : { width: 0 }}
+                      transition={{ duration: 1.2, delay: 0.5 + i * 0.1, ease: "easeOut" }}
+                    />
+                  </div>
+                </div>
               </Card>
             </motion.div>
           ))}

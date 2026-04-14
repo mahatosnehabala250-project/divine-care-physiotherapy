@@ -36,6 +36,7 @@ import JsonLd from "@/components/divine-care/JsonLd";
 import CookieConsent from "@/components/divine-care/CookieConsent";
 import VideoTestimonials from "@/components/divine-care/VideoTestimonials";
 import QuickConsult from "@/components/divine-care/QuickConsult";
+import HealthInsurance from "@/components/divine-care/HealthInsurance";
 
 export default function Home() {
   const [appointmentOpen, setAppointmentOpen] = useState(false);
@@ -59,6 +60,7 @@ export default function Home() {
         <TreatmentPlan />
         <TreatmentComparison />
         <TreatmentPackages />
+        <HealthInsurance />
         <TreatmentTimeline />
         <WhyWait />
         <PainQuiz />

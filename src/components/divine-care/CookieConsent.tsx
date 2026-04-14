@@ -42,9 +42,9 @@ export default function CookieConsent() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          className="fixed bottom-0 left-0 right-0 z-40"
+          className="fixed left-0 right-0 z-40 bottom-[68px] sm:bottom-0"
         >
-          <div className="backdrop-blur-md bg-white/95 border-t border-teal-100 shadow-2xl rounded-t-2xl">
+          <div className="backdrop-blur-md bg-white/95 border-t border-teal-100 shadow-2xl rounded-t-2xl sm:rounded-t-2xl mx-2 sm:mx-0 rounded-2xl">
             {/* Close button */}
             <button
               onClick={handleClose}
