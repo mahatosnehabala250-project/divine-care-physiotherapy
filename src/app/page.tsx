@@ -9,6 +9,7 @@ import DoctorMessage from "@/components/divine-care/DoctorMessage";
 import Stats from "@/components/divine-care/Stats";
 import ConditionsGrid from "@/components/divine-care/ConditionsGrid";
 import WhyChooseUs from "@/components/divine-care/WhyChooseUs";
+import VirtualTour from "@/components/divine-care/VirtualTour";
 import TreatmentPlan from "@/components/divine-care/TreatmentPlan";
 import TreatmentComparison from "@/components/divine-care/TreatmentComparison";
 import TreatmentTimeline from "@/components/divine-care/TreatmentTimeline";
@@ -49,6 +50,7 @@ export default function Home() {
         <Stats />
         <ConditionsGrid />
         <WhyChooseUs />
+        <VirtualTour />
         <TreatmentPlan />
         <TreatmentComparison />
         <TreatmentTimeline />

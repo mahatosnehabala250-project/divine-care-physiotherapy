@@ -911,3 +911,98 @@ body {
 .glow-amber-pulse {
   animation: glow-pulse-amber 3s ease-in-out infinite;
 }
+
+/* ============================================================
+   DARK MODE OVERRIDES
+   ============================================================ */
+.dark {
+  --background: 222 47% 6%;
+  --foreground: 210 40% 98%;
+}
+
+.dark body {
+  background-color: hsl(222, 47%, 6%);
+  color: hsl(210, 40%, 98%);
+}
+
+/* Dark mode section backgrounds */
+.dark section {
+  border-color: rgba(13, 148, 136, 0.15);
+}
+
+/* Dark mode card overrides */
+.dark .bg-white {
+  background-color: hsl(222, 47%, 10%) !important;
+}
+.dark .bg-gradient-to-b {
+  --tw-gradient-from: hsl(222, 47%, 8%);
+}
+.dark .bg-gradient-to-r {
+  --tw-gradient-from: hsl(222, 47%, 8%);
+}
+.dark .border-gray-100,
+.dark .border-gray-200 {
+  border-color: rgba(13, 148, 136, 0.15) !important;
+}
+.dark .border-teal-100 {
+  border-color: rgba(13, 148, 136, 0.2) !important;
+}
+.dark .border-teal-50 {
+  border-color: rgba(13, 148, 136, 0.1) !important;
+}
+
+/* Dark mode text overrides */
+.dark .text-teal-900 {
+  color: hsl(170, 40%, 90%) !important;
+}
+.dark .text-teal-800 {
+  color: hsl(170, 30%, 85%) !important;
+}
+.dark .text-teal-700 {
+  color: hsl(170, 25%, 80%) !important;
+}
+.dark .text-teal-600 {
+  color: hsl(170, 30%, 70%) !important;
+}
+
+/* Dark mode shadow adjustments */
+.dark .shadow-lg,
+.dark .shadow-xl,
+.dark .shadow-2xl {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Dark mode specific component overrides */
+.dark .bg-teal-50 {
+  background-color: hsl(170, 30%, 12%) !important;
+}
+.dark .bg-amber-50 {
+  background-color: hsl(40, 30%, 12%) !important;
+}
+.dark .bg-rose-50 {
+  background-color: hsl(350, 30%, 12%) !important;
+}
+.dark .bg-emerald-50 {
+  background-color: hsl(150, 30%, 12%) !important;
+}
+.dark .bg-red-50 {
+  background-color: hsl(0, 30%, 12%) !important;
+}
+.dark .bg-green-50 {
+  background-color: hsl(130, 30%, 12%) !important;
+}
+
+/* Dark mode header */
+.dark header {
+  background-color: hsl(222, 47%, 8%) !important;
+}
+
+/* Keep the hero section gradient dark even in dark mode */
+.dark .from-teal-950 {
+  --tw-gradient-from: hsl(170, 60%, 5%);
+}
+
+/* Dark mode footer enhancement */
+.dark footer {
+  background-color: hsl(170, 40%, 4%) !important;
+}

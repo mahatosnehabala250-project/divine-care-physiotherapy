@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { Phone, Mail, Menu, MapPin, Clock } from "lucide-react";
+import ThemeToggle from "@/components/divine-care/ThemeToggle";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -126,7 +127,8 @@ export default function Header({ onBookAppointment }: { onBookAppointment: () =>
           </nav>
 
           {/* CTA + Mobile Menu */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
             <Button
               onClick={() => onBookAppointment()}
               className="hidden sm:inline-flex bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white shadow-md hover:shadow-lg transition-all duration-200 rounded-xl px-5 btn-hover-scale"
