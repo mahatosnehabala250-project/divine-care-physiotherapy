@@ -178,7 +178,7 @@ export default function ConditionsGrid() {
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
               <Card
-                className="group h-full cursor-pointer border-2 border-teal-100 hover:border-teal-300 hover:shadow-xl transition-all duration-300 rounded-2xl overflow-hidden"
+                className="group h-full cursor-pointer border-2 border-teal-100 hover:border-teal-300 hover:shadow-xl transition-all duration-300 rounded-2xl overflow-hidden card-hover-lift"
                 onClick={() => setSelected(condition)}
               >
                 <CardHeader className="pb-3">
