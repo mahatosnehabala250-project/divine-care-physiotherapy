@@ -317,17 +317,28 @@ export default function Contact() {
             </div>
 
             {/* Google Map */}
-            <div className="rounded-2xl overflow-hidden border border-teal-100 shadow-md">
+            <div className="rounded-2xl overflow-hidden border border-teal-100 shadow-md relative group">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3678.6889!2d86.1844!3d22.8024!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f5e37c5c1c1c1c%3A0x0!2sSakchi%2C%20Jamshedpur!5e0!3m2!1sen!2sin!4v1699999999999!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29284.38!2d86.202233!3d22.8065061!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f5e30f37b2cd35%3A0xa999320ef7d60006!2sDivine%20Care-%20Best%20physiotherapy%20%7CAcupuncture%20(acupressure)%7Chijama%20(cupping%20therapy)%20in%20jamshedpur!5e0!3m2!1sen!2sin!4v1713300000000!5m2!1sen!2sin"
                 width="100%"
-                height="250"
+                height="280"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Divine Care Location - Sakchi, Jamshedpur"
+                title="Divine Care Physiotherapy - Sakchi, Jamshedpur Location"
+                className="grayscale-[30%] group-hover:grayscale-0 transition-all duration-500"
               />
+              {/* Map overlay badge */}
+              <a
+                href="https://www.google.com/maps/place/Divine+Care-+Best+physiotherapy+%7CAcupuncture+(acupressure)%7Chijama+(cupping+therapy)+in+jamshedpur/@22.8065061,86.2048079,17z"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-teal-700 text-xs font-semibold px-3 py-1.5 rounded-full shadow-md hover:bg-white hover:shadow-lg transition-all flex items-center gap-1.5"
+              >
+                <MapPin className="h-3.5 w-3.5" />
+                Open in Google Maps
+              </a>
             </div>
 
             {/* Emergency Note */}

@@ -191,7 +191,7 @@ export default function WhyChooseUs() {
                     </Button>
                   </a>
                   <a href="tel:9431757875">
-                    <Button variant="outline" className="border-teal-400 text-teal-100 hover:bg-teal-600 rounded-xl transition-all hover:scale-105">
+                    <Button className="bg-white/15 hover:bg-white/25 text-white border-2 border-teal-300/50 hover:border-teal-200 rounded-xl transition-all hover:scale-105 font-bold backdrop-blur-sm">
                       <Phone className="h-4 w-4 mr-2" />
                       Call Us
                     </Button>

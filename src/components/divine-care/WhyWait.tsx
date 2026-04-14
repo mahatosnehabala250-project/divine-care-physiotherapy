@@ -101,7 +101,7 @@ export default function WhyWait() {
               </Button>
             </a>
             <a href="tel:9431757875">
-              <Button size="lg" variant="outline" className="border-2 border-white/30 text-white hover:bg-white/10 rounded-2xl px-8 h-14 backdrop-blur-sm btn-hover-scale">
+              <Button size="lg" className="bg-white/15 hover:bg-white/25 text-white border-2 border-white/40 hover:border-white/60 rounded-2xl px-8 h-14 backdrop-blur-sm btn-hover-scale font-bold shadow-lg">
                 <Phone className="h-5 w-5 mr-2" />
                 Call: 9431757875
               </Button>

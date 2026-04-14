@@ -124,7 +124,7 @@ export default function Hero({ onBookAppointment }: { onBookAppointment: () => v
               </Button>
             </a>
             <a href="tel:9431757875" className="group">
-              <Button size="lg" className="bg-white/15 text-white hover:bg-white/25 rounded-2xl px-8 h-14 text-base backdrop-blur-md border border-white/30 hover:border-white/50 transition-all duration-300 group-hover:scale-[1.02] font-semibold">
+              <Button size="lg" className="bg-teal-700/80 text-white hover:bg-teal-700 rounded-2xl px-8 h-14 text-base backdrop-blur-md border-2 border-teal-400/50 hover:border-teal-300 transition-all duration-300 group-hover:scale-[1.02] font-bold shadow-lg shadow-teal-900/30 hover:shadow-xl hover:shadow-teal-700/40">
                 <Phone className="h-5 w-5 mr-2" />
                 Call Now
               </Button>
