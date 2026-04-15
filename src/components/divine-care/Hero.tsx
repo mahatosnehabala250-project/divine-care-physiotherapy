@@ -61,10 +61,11 @@ export default function Hero({ onBookAppointment }: { onBookAppointment: () => v
             transition={{ duration: 0.6, delay: 0.15 }}
             className="mt-8 text-4xl sm:text-5xl lg:text-[3.75rem] xl:text-6xl font-extrabold text-white leading-[1.1] tracking-tight text-shadow-hero"
           >
-            Kya Dard Ne Aapki 
+            {"Kya Dard Ne Aapki "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-300">
               Zindagi Rok Di
-            </span> Hai?
+            </span>
+            {" Hai?"}
           </motion.h1>
 
           {/* Sub-headline - Solution */}

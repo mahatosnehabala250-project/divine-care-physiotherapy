@@ -37,6 +37,8 @@ import CookieConsent from "@/components/divine-care/CookieConsent";
 import VideoTestimonials from "@/components/divine-care/VideoTestimonials";
 import QuickConsult from "@/components/divine-care/QuickConsult";
 import HealthInsurance from "@/components/divine-care/HealthInsurance";
+import PainReliefGuide from "@/components/divine-care/PainReliefGuide";
+import WaveSectionDivider from "@/components/divine-care/WaveSectionDivider";
 
 export default function Home() {
   const [appointmentOpen, setAppointmentOpen] = useState(false);
@@ -51,26 +53,33 @@ export default function Home() {
         <Hero onBookAppointment={() => setAppointmentOpen(true)} />
         <UrgencyBanner />
         <HealthTipsTicker />
+        <WaveSectionDivider variant="wave1" color="#f0fdfa" />
         <DoctorMessage />
+        <WaveSectionDivider variant="curve" color="#0d9488" />
         <Stats />
         <BodyMap />
         <ConditionsGrid />
+        <WaveSectionDivider variant="wave2" flip color="#f0fdfa" />
         <WhyChooseUs />
         <VirtualTour />
         <TreatmentPlan />
         <TreatmentComparison />
         <TreatmentPackages />
+        <WaveSectionDivider variant="slant" color="#f0fdfa" />
         <HealthInsurance />
         <TreatmentTimeline />
         <WhyWait />
         <PainQuiz />
+        <PainReliefGuide />
         <BeforeAfter />
         <SuccessStories />
         <VideoTestimonials />
+        <WaveSectionDivider variant="wave3" flip color="#f0fdfa" />
         <Testimonial />
         <ClinicGallery />
         <LivePatientCounter />
         <About />
+        <WaveSectionDivider variant="curve" flip color="#f0fdfa" />
         <FAQ />
         <Contact />
       </main>
