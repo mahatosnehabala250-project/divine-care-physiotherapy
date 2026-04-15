@@ -382,6 +382,26 @@ export default function DoctorMessage() {
                 </Button>
               </a>
             </div>
+
+            {/* Conference / Professional Recognition Photo */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.9 }}
+              className="relative rounded-2xl overflow-hidden shadow-lg border border-teal-100"
+            >
+              <img
+                src="/images/conference-group.png"
+                alt="Dr. Vikas at Acupuncture Science Association National Conference 2020"
+                className="w-full h-40 sm:h-48 object-cover object-center"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-teal-950/80 via-transparent to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-4">
+                <p className="text-white font-semibold text-sm">Acupuncture Science Association (ASA) India — 6th National Conference</p>
+                <p className="text-teal-200 text-xs mt-0.5">Professional recognition & national-level expertise</p>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>

@@ -141,9 +141,9 @@ export default function WhyChooseUs() {
                 <div className="w-0 h-0 border-t-[44px] border-t-teal-500/80 border-l-[44px] border-l-transparent" />
               </div>
               <img
-                src="/images/hijama-cupping.png"
-                alt="Hijama Cupping Therapy at Divine Care"
-                className="w-full h-60 sm:h-72 object-cover group-hover:scale-105 transition-transform duration-700"
+                src="/images/hijama-treatment-1.png"
+                alt="Hijama Cupping Therapy at Divine Care — Real treatment in progress"
+                className="w-full h-60 sm:h-72 object-cover object-center group-hover:scale-105 transition-transform duration-700"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-teal-950/85 via-teal-900/30 to-transparent" />
@@ -161,9 +161,9 @@ export default function WhyChooseUs() {
                 <div className="w-0 h-0 border-t-[44px] border-t-teal-500/80 border-l-[44px] border-l-transparent" />
               </div>
               <img
-                src="/images/acupuncture-treatment.png"
-                alt="Acupuncture Treatment at Divine Care"
-                className="w-full h-60 sm:h-72 object-cover group-hover:scale-105 transition-transform duration-700"
+                src="/images/doctor-treating-patient.png"
+                alt="Acupuncture Treatment at Divine Care — Dr. Vikas treating a patient"
+                className="w-full h-60 sm:h-72 object-cover object-top group-hover:scale-105 transition-transform duration-700"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-teal-950/85 via-teal-900/30 to-transparent" />
