@@ -450,10 +450,7 @@ export default function TreatmentPlan() {
               ✓
             </motion.span>
             <span className="text-emerald-700 text-sm font-medium">
-              100% Satisfaction Guarantee —{" "}
-              <span className="font-semibold text-emerald-800">
-                Agar fark nahi mehsoos hota, pehla session FREE
-              </span>
+              {"100% Satisfaction Guarantee —"} <span className="font-semibold text-emerald-800">Agar fark nahi mehsoos hota, pehla session FREE</span>
             </span>
           </motion.div>
         </motion.div>

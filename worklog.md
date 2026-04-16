@@ -317,3 +317,57 @@ Work Log:
 Issues Encountered:
 - Pre-existing lint error in VirtualTour.tsx (react-hooks/set-state-in-effect) — not introduced by this task
 - All new code passes lint cleanly
+
+---
+Task ID: 12-3
+Agent: Feature Agent
+Task: Add animated number ticker to Stats component
+
+Work Log:
+- Read current Stats.tsx (159 lines) to understand existing structure
+- Analyzed existing AnimatedCounter: used simple setInterval with linear increment, no easeOut timing, no completion effects
+- Reviewed globals.css for existing animation utilities (animate-gradient-text already defined)
+- Replaced old AnimatedCounter with new useCountUp hook implementation:
+  - Uses requestAnimationFrame for true 60fps smooth animation (replaces setInterval at 16ms)
+  - Implements easeOutCubic timing function (1 - (1-t)³) for natural fast-start, slow-finish animation
+  - Duration: 2000ms as specified
+  - Starts from 0 when section enters viewport (uses existing useInView with once: true)
+  - Tracks completion state via isComplete boolean
+  - Properly cleans up animation frame on unmount
+- Added scale pulse animation on completion:
+  - When isComplete becomes true, framer-motion animates scale from 1 → 1.05 → 1 over 0.4s
+  - Uses easeInOut timing for smooth pulse feel
+- Added teal-to-amber gradient text effect on completed numbers:
+  - Before completion: white text (matching existing style)
+  - After completion: bg-gradient-to-r from-teal-300 via-amber-300 to-teal-200 with bg-clip-text and text-transparent
+  - Gradient applied to both the number and suffix independently for clean rendering
+- Hydration safety verified:
+  - No Math.random() or Date.now() in render path
+  - useCountUp starts at 0 deterministically (no server/client mismatch)
+  - All animation state derived from useInView which is client-only
+  - Stats data array is static (defined outside component)
+- Preserved ALL existing features:
+  - Parallax blur circles with scroll transforms (blurY1, blurY2, blurX1, blurX2)
+  - Static corner circles
+  - Subtle dot grid background
+  - Diagonal line pattern
+  - Medical cross watermark SVG
+  - Card hover effects (shine, scale, border color change)
+  - Icon containers with color coding
+  - Pulse dots next to stat labels
+  - Progress bars with framer-motion width animation
+  - Stat descriptions
+  - All card layout and responsive grid
+- Removed unused useState import (no longer needed in AnimatedCounter)
+- Added useCallback import for stable easeOutCubic reference
+- Lint check: passes clean (0 errors, 0 warnings)
+- Dev server: compiles successfully with 200 responses
+
+Stage Summary:
+- Replaced simple setInterval-based AnimatedCounter with proper useCountUp hook using requestAnimationFrame
+- Animation: easeOutCubic timing, 2000ms duration, 60fps, counts from 0 to target
+- Scale pulse effect (1 → 1.05 → 1) triggers when counting completes
+- Teal-to-amber gradient text applied on completion for visual reward
+- No hydration issues — deterministic rendering, client-only animation
+- All existing features preserved (parallax, progress bars, pulse dots, watermark, etc.)
+- Lint clean, dev server stable

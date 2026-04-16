@@ -1,34 +1,102 @@
 "use client";
 
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import { Award, Users, HeartPulse, Clock } from "lucide-react";
 
-function AnimatedCounter({ target, suffix = "", isInView }: { target: number; suffix?: string; isInView: boolean }) {
-  const [count, setCount] = useState(target);
+// ─── useCountUp Hook ───────────────────────────────────────────────
+// Smoothly counts from 0 to `target` using requestAnimationFrame at 60fps
+// with an easeOut timing function. Only starts when `isInView` is true.
+function useCountUp(target: number, isInView: boolean, duration = 2000) {
+  const [count, setCount] = useState(0);
+  const [isComplete, setIsComplete] = useState(false);
+
+  // easeOutCubic: fast start, slow finish
+  const easeOutCubic = useCallback((t: number) => 1 - Math.pow(1 - t, 3), []);
 
   useEffect(() => {
     if (!isInView) return;
-    let start = 0;
-    const duration = 2000;
-    const increment = target / (duration / 16);
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
+
+    let startTime: number | null = null;
+    let animationId: number;
+
+    const animate = (timestamp: number) => {
+      if (startTime === null) {
+        startTime = timestamp;
       }
-    }, 16);
-    return () => clearInterval(timer);
-  }, [isInView, target]);
+
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easedProgress = easeOutCubic(progress);
+      const currentValue = Math.round(easedProgress * target);
+
+      setCount(currentValue);
+
+      if (progress < 1) {
+        animationId = requestAnimationFrame(animate);
+      } else {
+        setCount(target);
+        setIsComplete(true);
+      }
+    };
+
+    animationId = requestAnimationFrame(animate);
+
+    return () => {
+      cancelAnimationFrame(animationId);
+    };
+  }, [isInView, target, duration, easeOutCubic]);
+
+  return { count, isComplete };
+}
+
+// ─── AnimatedCounter Component ─────────────────────────────────────
+function AnimatedCounter({
+  target,
+  suffix = "",
+  isInView,
+}: {
+  target: number;
+  suffix?: string;
+  isInView: boolean;
+}) {
+  const { count, isComplete } = useCountUp(target, isInView);
 
   return (
-    <span>
-      {isInView ? count : target}
-      {suffix}
-    </span>
+    <motion.span
+      className="inline-block"
+      animate={
+        isComplete
+          ? { scale: [1, 1.05, 1] }
+          : { scale: 1 }
+      }
+      transition={
+        isComplete
+          ? { duration: 0.4, ease: "easeInOut" }
+          : { duration: 0 }
+      }
+    >
+      <span
+        className={
+          isComplete
+            ? "bg-gradient-to-r from-teal-300 via-amber-300 to-teal-200 bg-clip-text text-transparent"
+            : "text-white"
+        }
+      >
+        {isInView ? count : 0}
+      </span>
+      {suffix && (
+        <span
+          className={
+            isComplete
+              ? "bg-gradient-to-r from-teal-300 via-amber-300 to-teal-200 bg-clip-text text-transparent"
+              : "text-white"
+          }
+        >
+          {suffix}
+        </span>
+      )}
+    </motion.span>
   );
 }
 
@@ -121,7 +189,7 @@ export default function Stats() {
                     }`}>
                       <stat.icon className={`h-7 w-7 sm:h-8 sm:w-8 ${stat.color === "teal" ? "text-teal-300" : "text-amber-300"}`} />
                     </div>
-                    <div className="text-3xl sm:text-4xl font-extrabold mb-1 tracking-tight animate-gradient-text">
+                    <div className="text-3xl sm:text-4xl font-extrabold mb-1 tracking-tight">
                       <AnimatedCounter target={stat.value} suffix={stat.suffix} isInView={isInView} />
                     </div>
                     <div className="flex items-center justify-center gap-1.5">

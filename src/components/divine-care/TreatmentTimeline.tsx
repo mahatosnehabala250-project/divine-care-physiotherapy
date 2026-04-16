@@ -107,8 +107,7 @@ export default function TreatmentTimeline() {
             YOUR TREATMENT JOURNEY
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-teal-900">
-            Aapki Recovery Ka Raasta —{" "}
-            <span className="text-amber-600">Step by Step</span>
+            {"Aapki Recovery Ka Raasta —"} <span className="text-amber-600">Step by Step</span>
           </h2>
           <p className="mt-3 text-teal-600 max-w-2xl mx-auto leading-relaxed">
             Dr. Vikas ke saath aapka har step clear hai — koi surprise nahi, koi

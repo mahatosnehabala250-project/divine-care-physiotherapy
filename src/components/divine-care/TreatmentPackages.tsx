@@ -298,10 +298,7 @@ export default function TreatmentPackages() {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="text-center text-sm text-teal-500 mt-8 leading-relaxed"
         >
-          * Prices may vary based on condition.{" "}
-          <span className="font-semibold text-teal-600">
-            Pehli consultation FREE hai.
-          </span>
+          {"* Prices may vary based on condition."} <span className="font-semibold text-teal-600">Pehli consultation FREE hai.</span>
         </motion.p>
 
         {/* ── Compare Plans Toggle ── */}

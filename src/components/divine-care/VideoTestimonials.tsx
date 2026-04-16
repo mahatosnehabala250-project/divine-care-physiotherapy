@@ -166,8 +166,7 @@ export default function VideoTestimonials() {
             Real Stories
           </Badge>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-teal-900">
-            Patients Ka{" "}
-            <span className="text-amber-600">Asli</span> Experience
+            {"Patients Ka"} <span className="text-amber-600">Asli</span>{" Experience"}
           </h2>
           <p className="mt-4 text-teal-600 max-w-2xl mx-auto leading-relaxed text-lg">
             Suniyeh un logon se jo already dard se azaadi paaye hain

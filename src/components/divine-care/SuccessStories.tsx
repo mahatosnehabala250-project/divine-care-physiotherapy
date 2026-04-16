@@ -141,8 +141,7 @@ export default function SuccessStories() {
             SUCCESS STORIES
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-teal-900">
-            Inke Dard Ki Kahani,{" "}
-            <span className="text-amber-600">Unki Jeet Ki Kahani</span>
+            {"Inke Dard Ki Kahani,"} <span className="text-amber-600">Unki Jeet Ki Kahani</span>
           </h2>
           <p className="mt-3 text-teal-600 max-w-2xl mx-auto leading-relaxed">
             500+ patients ne apni pain-free zindagi wapas paayi — unki kahaniyan sunke aapko bhi

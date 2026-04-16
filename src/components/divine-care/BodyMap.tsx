@@ -423,10 +423,7 @@ export default function BodyMap() {
             Interactive Body Map
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-teal-900">
-            Apna Dard{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-amber-600">
-              Yahan Click Karein
-            </span>
+            {"Apna Dard"} <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-amber-600">Yahan Click Karein</span>
           </h2>
           <p className="mt-3 text-teal-600 max-w-2xl mx-auto leading-relaxed">
             Body ke kis hisse mein dard hai? Click karein aur jaayein kya karna
