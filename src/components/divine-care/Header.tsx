@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { Phone, Mail, Menu, MapPin, Clock } from "lucide-react";
@@ -82,10 +81,7 @@ export default function Header({ onBookAppointment }: { onBookAppointment: () =>
       </div>
 
       {/* Main Nav */}
-      <motion.header
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
+      <header
         className={`sticky top-0 z-50 transition-all duration-300 ${
           scrolled
             ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-teal-100"
@@ -182,7 +178,7 @@ export default function Header({ onBookAppointment }: { onBookAppointment: () =>
             </Sheet>
           </div>
         </div>
-      </motion.header>
+      </header>
     </>
   );
 }

@@ -70,22 +70,41 @@ const facilityStats = [
   { icon: Accessibility, label: "Wheelchair Accessible" },
 ];
 
-// Deterministic seeded random to avoid hydration mismatch
-function seededRandom(seed: number) {
-  const x = Math.sin(seed * 9301 + 49297) * 233280;
-  return x - Math.floor(x);
-}
+// Pre-computed particle positions to guarantee identical server & client rendering
+// (Math.sin / Math.random produce different float precision on Node.js vs browser)
+const TEAL_PARTICLES = [
+  { id: 0, x: 12.5, y: 18.3, size: 4.2, duration: 7, delay: 0.5 },
+  { id: 1, x: 45.8, y: 72.1, size: 5.1, duration: 6, delay: 1.2 },
+  { id: 2, x: 78.4, y: 35.6, size: 3.8, duration: 8, delay: 0.8 },
+  { id: 3, x: 23.1, y: 89.2, size: 6.0, duration: 5, delay: 2.1 },
+  { id: 4, x: 56.7, y: 14.5, size: 4.5, duration: 9, delay: 0.3 },
+  { id: 5, x: 89.3, y: 63.8, size: 3.2, duration: 7, delay: 1.5 },
+  { id: 6, x: 34.2, y: 47.9, size: 5.8, duration: 6, delay: 2.4 },
+  { id: 7, x: 67.5, y: 81.3, size: 4.0, duration: 8, delay: 0.9 },
+  { id: 8, x: 8.9, y: 55.2, size: 5.3, duration: 5, delay: 1.8 },
+  { id: 9, x: 91.6, y: 22.7, size: 3.6, duration: 9, delay: 0.6 },
+  { id: 10, x: 42.3, y: 68.4, size: 4.8, duration: 7, delay: 2.0 },
+  { id: 11, x: 73.8, y: 9.1, size: 5.6, duration: 6, delay: 1.1 },
+];
+
+const AMBER_PARTICLES = [
+  { id: 0, x: 18.7, y: 24.5, size: 5.4, duration: 6, delay: 1.0 },
+  { id: 1, x: 52.3, y: 67.8, size: 3.9, duration: 8, delay: 0.4 },
+  { id: 2, x: 85.1, y: 41.2, size: 4.7, duration: 7, delay: 1.7 },
+  { id: 3, x: 15.4, y: 83.6, size: 5.2, duration: 5, delay: 2.3 },
+  { id: 4, x: 61.2, y: 11.9, size: 3.5, duration: 9, delay: 0.7 },
+  { id: 5, x: 93.7, y: 58.4, size: 6.1, duration: 6, delay: 1.4 },
+  { id: 6, x: 28.9, y: 42.3, size: 4.3, duration: 8, delay: 2.5 },
+  { id: 7, x: 72.6, y: 76.8, size: 5.7, duration: 7, delay: 0.2 },
+  { id: 8, x: 5.3, y: 51.7, size: 3.8, duration: 5, delay: 1.9 },
+  { id: 9, x: 87.4, y: 16.2, size: 4.6, duration: 9, delay: 1.3 },
+  { id: 10, x: 38.1, y: 64.9, size: 5.0, duration: 6, delay: 0.8 },
+  { id: 11, x: 69.7, y: 5.4, size: 3.3, duration: 8, delay: 2.2 },
+];
 
 // Floating particle component
 function FloatingParticles({ color }: { color: string }) {
-  const particles = Array.from({ length: 12 }, (_, i) => ({
-    id: i,
-    x: seededRandom(i * 5) * 100,
-    y: seededRandom(i * 5 + 1) * 100,
-    size: 3 + seededRandom(i * 5 + 2) * 4,
-    duration: 4 + seededRandom(i * 5 + 3) * 6,
-    delay: seededRandom(i * 5 + 4) * 3,
-  }));
+  const particles = color === "teal" ? TEAL_PARTICLES : AMBER_PARTICLES;
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -93,7 +112,7 @@ function FloatingParticles({ color }: { color: string }) {
         <motion.div
           key={p.id}
           className={`absolute rounded-full ${color === "teal" ? "bg-teal-400/30" : "bg-amber-400/30"}`}
-          style={{ left: `${p.x}%`, top: `${p.y}%`, width: p.size, height: p.size }}
+          style={{ left: `${p.x}%`, top: `${p.y}%`, width: `${p.size}px`, height: `${p.size}px` }}
           animate={{
             y: [0, -20, 0, 20, 0],
             x: [0, 10, -10, 5, 0],

@@ -1,4 +1,36 @@
 ---
+Task ID: 14
+Agent: Main Agent
+Task: Fix VirtualTour FloatingParticles hydration mismatch (floating-point precision diff between Node.js and browser)
+
+Work Log:
+- User reported hydration mismatch still occurring in VirtualTour FloatingParticles
+- Root cause: Previous fix used seededRandom() based on Math.sin() — but Math.sin() produces different float precision between Node.js server and browser client
+  - Server rendered: `"23.2006%"` — truncated to fewer decimal places
+  - Client rendered: `"23.200597017421387%"` — full precision
+  - Same issue with width/height: server `"3.15939px"` vs client `3.1593899088329636`
+- Also: width/height were passed as bare numbers to style prop, causing React to format differently on server (appending "px" string) vs client (raw number)
+- Fix: Replaced seededRandom() approach with **hard-coded particle position constants**
+  - Created TEAL_PARTICLES and AMBER_PARTICLES arrays with 12 particles each
+  - All values are simple decimals (e.g., 12.5, 45.8) that render identically on both server and client
+  - Changed width/height from bare numbers (`width: p.size`) to explicit strings (`width: "${p.size}px"`)
+- This guarantees zero hydration mismatch since there is zero computation — just literal constants
+- Removed seededRandom() function entirely (no longer needed)
+- Also fixed Header.tsx flickering issue from previous session:
+  - Removed `motion.header` with `initial={{ y: -100 }}` slide-in animation (caused visible flicker/flash)
+  - Changed to plain `<header>` element — no animation, renders immediately
+  - Removed unused framer-motion imports from Header.tsx
+- Lint check: passes clean (0 errors)
+- Dev server: stable with 200 responses
+- Browser verification: 60 particles rendering, page loads without errors
+
+Stage Summary:
+- VirtualTour hydration mismatch PERMANENTLY fixed with hard-coded particle constants
+- Header flickering fixed by removing slide-in animation
+- No more Math.sin/Math.random computation in render path — guaranteed identical SSR + client output
+- All lint clean, dev server stable
+
+---
 Task ID: 11
 Agent: Main Agent
 Task: Fix hydration mismatch errors in VirtualTour (FloatingParticles) and WhyWait components
