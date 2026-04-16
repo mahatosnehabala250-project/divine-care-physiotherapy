@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import {
   AlertTriangle, ArrowRight, MessageCircle, Phone,
@@ -13,7 +13,8 @@ export default function WhyWait() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   // Static "slots remaining" number (3-5 range, purely visual)
-  const [slotsLeft] = useState(() => Math.floor(Math.random() * 3) + 3);
+  // Use deterministic value to avoid hydration mismatch
+  const slotsLeft = 4;
 
   // Sparkle positions for CTA button
   const sparkles = [

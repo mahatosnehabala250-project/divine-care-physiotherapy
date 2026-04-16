@@ -70,15 +70,21 @@ const facilityStats = [
   { icon: Accessibility, label: "Wheelchair Accessible" },
 ];
 
+// Deterministic seeded random to avoid hydration mismatch
+function seededRandom(seed: number) {
+  const x = Math.sin(seed * 9301 + 49297) * 233280;
+  return x - Math.floor(x);
+}
+
 // Floating particle component
 function FloatingParticles({ color }: { color: string }) {
   const particles = Array.from({ length: 12 }, (_, i) => ({
     id: i,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: 3 + Math.random() * 4,
-    duration: 4 + Math.random() * 6,
-    delay: Math.random() * 3,
+    x: seededRandom(i * 5) * 100,
+    y: seededRandom(i * 5 + 1) * 100,
+    size: 3 + seededRandom(i * 5 + 2) * 4,
+    duration: 4 + seededRandom(i * 5 + 3) * 6,
+    delay: seededRandom(i * 5 + 4) * 3,
   }));
 
   return (

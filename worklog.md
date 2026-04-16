@@ -1,4 +1,26 @@
 ---
+Task ID: 11
+Agent: Main Agent
+Task: Fix hydration mismatch errors in VirtualTour (FloatingParticles) and WhyWait components
+
+Work Log:
+- User reported hydration mismatch error: server rendered text didn't match client
+- Root cause 1: VirtualTour.tsx FloatingParticles component used Math.random() 60 times during render (12 particles × 5 random values each), producing different positions/sizes on server vs client
+- Root cause 2: WhyWait.tsx used Math.random() in useState initializer for slotsLeft, producing different values on server (5) vs client (4)
+- Fix 1 (VirtualTour): Created seededRandom() deterministic hash function using Math.sin(seed * 9301 + 49297) * 233280 pattern. Replaced all Math.random() calls in FloatingParticles with seededRandom(i * 5 + offset), ensuring identical output on server and client
+- Fix 2 (WhyWait): Replaced random `useState(() => Math.floor(Math.random() * 3) + 3)` with static constant `const slotsLeft = 4` since the value is purely decorative
+- Removed unused imports from WhyWait.tsx: useState, useEffect (no longer needed)
+- Verified sidebar.tsx also uses Math.random() but it's a shadcn/ui component not rendered on our page, so no hydration issue
+- Lint check: passes clean (0 errors, 0 warnings)
+- Dev server: stable with 200 responses
+
+Stage Summary:
+- Hydration mismatch error FIXED in both VirtualTour (FloatingParticles) and WhyWait
+- Used deterministic seededRandom() approach for particles (same output server + client)
+- Used static constant for slotsLeft (no more random SSR mismatch)
+- All lint clean, dev server stable
+
+---
 Task ID: 10
 Agent: Main Agent (Cron Review Round 10)
 Task: QA testing, Hero headline permanent fix, create WaveSectionDivider, PainReliefGuide, enhance TreatmentPlan/VirtualTour, fix lint errors
