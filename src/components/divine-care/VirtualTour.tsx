@@ -348,23 +348,14 @@ export default function VirtualTour() {
                 >
                   {/* Image area with animated gradient */}
                   <div className={`relative h-56 sm:h-72 bg-gradient-to-br ${activeArea.gradientFrom} ${activeArea.gradientTo} flex items-center justify-center overflow-hidden`}>
-                    {/* Animated gradient overlay */}
-                    <motion.div
-                      className="absolute inset-0 opacity-30"
-                      animate={{
+                    {/* Animated gradient overlay - uses CSS transition instead of framer-motion background animation */}
+                    <div
+                      className="absolute inset-0 opacity-30 transition-all duration-[6000ms] ease-in-out"
+                      style={{
                         background: activeArea.color === "teal"
-                          ? [
-                              "linear-gradient(135deg, rgba(20,184,166,0.3) 0%, rgba(245,158,11,0.1) 100%)",
-                              "linear-gradient(135deg, rgba(20,184,166,0.1) 0%, rgba(245,158,11,0.3) 100%)",
-                              "linear-gradient(135deg, rgba(20,184,166,0.3) 0%, rgba(245,158,11,0.1) 100%)",
-                            ]
-                          : [
-                              "linear-gradient(135deg, rgba(245,158,11,0.3) 0%, rgba(20,184,166,0.1) 100%)",
-                              "linear-gradient(135deg, rgba(245,158,11,0.1) 0%, rgba(20,184,166,0.3) 100%)",
-                              "linear-gradient(135deg, rgba(245,158,11,0.3) 0%, rgba(20,184,166,0.1) 100%)",
-                            ],
+                          ? "linear-gradient(135deg, rgba(20,184,166,0.3) 0%, rgba(245,158,11,0.1) 100%)"
+                          : "linear-gradient(135deg, rgba(245,158,11,0.3) 0%, rgba(20,184,166,0.1) 100%)"
                       }}
-                      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                     />
 
                     {/* Floating particles */}

@@ -550,6 +550,10 @@ export default function BodyMap() {
                           filter={isHovered ? "url(#tealGlow)" : isSelected ? "url(#amberGlow)" : undefined}
                           className="cursor-pointer"
                           style={{ transition: "fill 0.2s, stroke 0.2s" }}
+                          tabIndex={0}
+                          role="button"
+                          aria-label={`${bodyRegions.find((r) => r.id === rp.id)?.labelHinglish || rp.id} - click to see conditions`}
+                          onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); handleRegionClick(rp.id); } }}
                           onHoverStart={() => setHoveredRegion(rp.id)}
                           onHoverEnd={() => setHoveredRegion(null)}
                           onClick={() => handleRegionClick(rp.id)}

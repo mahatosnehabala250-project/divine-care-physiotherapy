@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
-import { Phone, Mail, Menu, MapPin, Clock } from "lucide-react";
+import { Phone, Mail, Menu, MapPin, Clock, Smartphone } from "lucide-react";
 import ThemeToggle from "@/components/divine-care/ThemeToggle";
 
 const navLinks = [
@@ -59,7 +59,7 @@ export default function Header({ onBookAppointment }: { onBookAppointment: () =>
         <div className="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-4 flex-wrap">
             <a href="tel:9431757875" className="flex items-center gap-1.5 hover:text-teal-200 transition-colors">
-              <Phone className="h-3.5 w-3.5" />
+              <Smartphone className="h-3.5 w-3.5" />
               <span>9431757875 / 7903415819</span>
             </a>
             <a href="mailto:divinecarejsr1@gmail.com" className="hidden sm:flex items-center gap-1.5 hover:text-teal-200 transition-colors">

@@ -39,6 +39,7 @@ import QuickConsult from "@/components/divine-care/QuickConsult";
 import HealthInsurance from "@/components/divine-care/HealthInsurance";
 import PainReliefGuide from "@/components/divine-care/PainReliefGuide";
 import WaveSectionDivider from "@/components/divine-care/WaveSectionDivider";
+import ErrorBoundary from "@/components/divine-care/ErrorBoundary";
 
 export default function Home() {
   const [appointmentOpen, setAppointmentOpen] = useState(false);
@@ -50,41 +51,95 @@ export default function Home() {
       <PageNavDots />
       <Header onBookAppointment={() => setAppointmentOpen(true)} />
       <main className="flex-1">
-        <Hero onBookAppointment={() => setAppointmentOpen(true)} />
-        <UrgencyBanner />
-        <HealthTipsTicker />
+        <ErrorBoundary>
+          <Hero onBookAppointment={() => setAppointmentOpen(true)} />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <UrgencyBanner />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <HealthTipsTicker />
+        </ErrorBoundary>
         <WaveSectionDivider variant="wave1" color="#f0fdfa" />
-        <DoctorMessage />
+        <ErrorBoundary>
+          <DoctorMessage />
+        </ErrorBoundary>
         <WaveSectionDivider variant="curve" color="#0d9488" />
-        <Stats />
-        <BodyMap />
-        <ConditionsGrid />
+        <ErrorBoundary>
+          <Stats />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <BodyMap />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <ConditionsGrid />
+        </ErrorBoundary>
         <WaveSectionDivider variant="wave2" flip color="#f0fdfa" />
-        <WhyChooseUs />
-        <VirtualTour />
-        <TreatmentPlan />
-        <TreatmentComparison />
-        <TreatmentPackages />
+        <ErrorBoundary>
+          <WhyChooseUs />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <VirtualTour />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <TreatmentPlan />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <TreatmentComparison />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <TreatmentPackages />
+        </ErrorBoundary>
         <WaveSectionDivider variant="slant" color="#f0fdfa" />
-        <HealthInsurance />
-        <TreatmentTimeline />
-        <WhyWait />
-        <PainQuiz />
-        <PainReliefGuide />
-        <BeforeAfter />
-        <SuccessStories />
-        <VideoTestimonials />
+        <ErrorBoundary>
+          <HealthInsurance />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <TreatmentTimeline />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <WhyWait />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <PainQuiz />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <PainReliefGuide />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <BeforeAfter />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <SuccessStories />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <VideoTestimonials />
+        </ErrorBoundary>
         <WaveSectionDivider variant="wave3" flip color="#f0fdfa" />
-        <Testimonial />
-        <ClinicGallery />
-        <LivePatientCounter />
-        <About />
+        <ErrorBoundary>
+          <Testimonial />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <ClinicGallery />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <LivePatientCounter />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <About />
+        </ErrorBoundary>
         <WaveSectionDivider variant="curve" flip color="#f0fdfa" />
-        <FAQ />
-        <Contact />
+        <ErrorBoundary>
+          <FAQ />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <Contact />
+        </ErrorBoundary>
       </main>
       <Footer />
-      <QuickConsult />
+      <ErrorBoundary>
+        <QuickConsult />
+      </ErrorBoundary>
       <WhatsAppButton />
       <BackToTop />
       <StickyMobileCTA />

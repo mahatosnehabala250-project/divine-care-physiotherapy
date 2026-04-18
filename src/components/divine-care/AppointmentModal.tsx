@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -54,13 +54,7 @@ export default function AppointmentModal({ open, onOpenChange }: AppointmentModa
   });
   const [submitError, setSubmitError] = useState("");
 
-  // Compute minDate client-side only to avoid hydration mismatch
-  const minDate = useMemo(() => {
-    if (typeof window === "undefined") return "";
-    return new Date().toISOString().split("T")[0];
-  }, []);
-
-  // Re-compute minDate after mount for hydration safety
+  // Compute minDate after mount for hydration safety
   const [mountedMinDate, setMountedMinDate] = useState("");
   useEffect(() => {
     setMountedMinDate(new Date().toISOString().split("T")[0]);

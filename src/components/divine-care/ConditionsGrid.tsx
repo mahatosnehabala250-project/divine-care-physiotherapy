@@ -5,7 +5,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -285,6 +285,9 @@ export default function ConditionsGrid() {
                     </div>
                   </div>
                 </div>
+                <DialogDescription className="sr-only">
+                  Detailed information about {selected.title} including causes, treatments, and treatment plan
+                </DialogDescription>
               </DialogHeader>
 
               {/* Empathy */}
