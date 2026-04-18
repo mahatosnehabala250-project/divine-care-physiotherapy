@@ -502,3 +502,24 @@ Priority Recommendations for Next Phase:
 4. Add patient intake form in AppointmentModal
 5. Mobile UX audit — ensure all interactive elements are touch-friendly
 6. Consider adding video background in hero section
+
+---
+Task ID: 17
+Agent: Main Agent
+Task: Fix "1 log" showing on website (Next.js dev tools indicator)
+
+Work Log:
+- User uploaded screenshot showing the website with "1 log" visible
+- Used VLM to analyze the screenshot — identified a dark circular "N" icon (Next.js Dev Tools logo) in the bottom-left corner
+- This was the Next.js development indicator button that shows in dev mode
+- Fixed by adding `devIndicators: false` to next.config.ts
+- Server restarted automatically after config change
+- Verified with agent-browser: "Open Next.js Dev Tools" button no longer appears in accessibility tree
+- Lint: passes clean (0 errors)
+- Dev server: stable with 200 responses
+
+Stage Summary:
+- Next.js Dev Tools "N" logo (dev indicator) removed from bottom-left corner
+- Added `devIndicators: false` to next.config.ts
+- Page now shows only the intended floating buttons (WhatsApp, QuickConsult, BackToTop)
+- No more development overlays visible on the page
