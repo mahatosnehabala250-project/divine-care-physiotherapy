@@ -128,7 +128,7 @@ export default function QuickConsult() {
         )}
       </AnimatePresence>
 
-      <div className="fixed bottom-24 right-6 z-30 flex flex-col items-end gap-3">
+      <div className="fixed bottom-[8.5rem] right-6 sm:bottom-24 z-30 flex flex-col items-end gap-3">
         {/* Expanded Panel */}
         <AnimatePresence>
           {isOpen && (
