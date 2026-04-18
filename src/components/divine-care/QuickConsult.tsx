@@ -30,7 +30,7 @@ let _showTimerStarted = false;
 
 function subscribeShow(cb: () => void) {
   showListeners.add(cb);
-  return () => showListeners.remove(cb);
+  return () => showListeners.delete(cb);
 }
 
 function getSnapshotShow() {
@@ -61,13 +61,13 @@ function useAutoShow() {
 
 // ─── WhatsApp URLs ──────────────────────────────────────────────────────────
 const WHATSAPP_KNEE =
-  "https://wa.me/9431757875?text=Namaste!%20Mujhe%20knee%20pain%20hai.%20Kya%20aap%20meri%20madad%20kar%20sakte%20hain?";
+  "https://wa.me/919431757875?text=Namaste!%20Mujhe%20knee%20pain%20hai.%20Kya%20aap%20meri%20madad%20kar%20sakte%20hain?";
 
 const WHATSAPP_BACK_NECK =
-  "https://wa.me/9431757875?text=Namaste!%20Mujhe%20back/neck%20pain%20hai.%20Kya%20aap%20meri%20madad%20kar%20sakte%20hain?";
+  "https://wa.me/919431757875?text=Namaste!%20Mujhe%20back/neck%20pain%20hai.%20Kya%20aap%20meri%20madad%20kar%20sakte%20hain?";
 
 const WHATSAPP_OTHER =
-  "https://wa.me/9431757875?text=Namaste!%20Mujhe%20apni%20problem%20ke%20baare%20mein%20baat%20karni%20hai.";
+  "https://wa.me/919431757875?text=Namaste!%20Mujhe%20apni%20problem%20ke%20baare%20mein%20baat%20karni%20hai.";
 
 // ─── Quick question config ──────────────────────────────────────────────────
 interface QuickQuestion {

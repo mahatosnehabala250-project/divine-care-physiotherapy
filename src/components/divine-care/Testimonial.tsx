@@ -174,7 +174,7 @@ export default function Testimonial() {
                     </Button>
                   </div>
                   <div className="flex gap-2">
-                    <a href="https://wa.me/9431757875" target="_blank" rel="noopener noreferrer">
+                    <a href="https://wa.me/919431757875" target="_blank" rel="noopener noreferrer">
                       <Button size="sm" className="bg-teal-600 hover:bg-teal-700 text-white rounded-xl">
                         <MessageCircle className="h-3.5 w-3.5 mr-1.5" />
                         Meri Bari

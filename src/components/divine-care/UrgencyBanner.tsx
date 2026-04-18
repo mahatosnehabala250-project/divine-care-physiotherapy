@@ -57,7 +57,7 @@ export default function UrgencyBanner() {
                   Call: 9431757875
                 </Button>
               </a>
-              <a href="https://wa.me/9431757875" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/919431757875" target="_blank" rel="noopener noreferrer">
                 <Button size="sm" className="bg-green-500 hover:bg-green-600 text-white font-bold rounded-xl h-9 shadow-lg border-0 hover:scale-105 transition-all">
                   <MessageCircle className="h-3.5 w-3.5 mr-1.5" />
                   WhatsApp

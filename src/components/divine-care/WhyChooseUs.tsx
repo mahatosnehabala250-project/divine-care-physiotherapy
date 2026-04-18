@@ -184,7 +184,7 @@ export default function WhyChooseUs() {
               <div className="relative z-10">
                 <p className="text-teal-100 mb-4 font-medium">In dono treatments ke baare mein aur jaanein?</p>
                 <div className="flex flex-wrap gap-3 justify-center">
-                  <a href="https://wa.me/9431757875" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/919431757875" target="_blank" rel="noopener noreferrer">
                     <Button className="bg-amber-500 hover:bg-amber-600 text-teal-900 font-bold rounded-xl shadow-lg transition-all hover:scale-105">
                       <MessageCircle className="h-4 w-4 mr-2" />
                       WhatsApp Now

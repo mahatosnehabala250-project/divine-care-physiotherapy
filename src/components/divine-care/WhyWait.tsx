@@ -289,7 +289,7 @@ export default function WhyWait() {
                     ✦
                   </motion.span>
                 ))}
-                <a href="https://wa.me/9431757875" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/919431757875" target="_blank" rel="noopener noreferrer">
                   <Button size="lg" className="bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-teal-900 font-bold rounded-2xl px-10 h-16 text-base shadow-xl shadow-amber-500/30 btn-hover-scale relative overflow-hidden">
                     <MessageCircle className="h-5 w-5 mr-2" />
                     Aaj Hi Appointment Book Karein

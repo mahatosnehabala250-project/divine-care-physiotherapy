@@ -261,7 +261,7 @@ export default function TreatmentPackages() {
 
                   {/* CTA Button */}
                   <a
-                    href="https://wa.me/9431757875"
+                    href="https://wa.me/919431757875"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block"
@@ -419,7 +419,7 @@ export default function TreatmentPackages() {
         >
           <div className="flex flex-wrap gap-3 justify-center">
             <a
-              href="https://wa.me/9431757875"
+              href="https://wa.me/919431757875"
               target="_blank"
               rel="noopener noreferrer"
             >

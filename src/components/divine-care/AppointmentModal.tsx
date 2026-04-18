@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/select";
 import {
   CalendarDays, Clock, Phone, MessageCircle,
-  CheckCircle2, Loader2, Sparkles, ArrowRight
+  CheckCircle2, Loader2, Sparkles, ArrowRight, AlertCircle
 } from "lucide-react";
 
 const timeSlots = [
@@ -52,6 +52,19 @@ export default function AppointmentModal({ open, onOpenChange }: AppointmentModa
     date: "",
     time: "",
   });
+  const [submitError, setSubmitError] = useState("");
+
+  // Compute minDate client-side only to avoid hydration mismatch
+  const minDate = useMemo(() => {
+    if (typeof window === "undefined") return "";
+    return new Date().toISOString().split("T")[0];
+  }, []);
+
+  // Re-compute minDate after mount for hydration safety
+  const [mountedMinDate, setMountedMinDate] = useState("");
+  useEffect(() => {
+    setMountedMinDate(new Date().toISOString().split("T")[0]);
+  }, []);
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -70,7 +83,7 @@ export default function AppointmentModal({ open, onOpenChange }: AppointmentModa
         setSubmitted(true);
       }
     } catch {
-      // Error handling
+      setSubmitError("Kuch gadbad ho gayi. Dobara try karein ya seedha call karein: 9431757875");
     } finally {
       setLoading(false);
     }
@@ -112,7 +125,7 @@ export default function AppointmentModal({ open, onOpenChange }: AppointmentModa
               Hum 30 minute ke andar confirm karenge. Agar emergency hai toh seedha call karein.
             </p>
             <div className="flex flex-wrap gap-3 justify-center mb-4">
-              <a href="https://wa.me/9431757875" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/919431757875" target="_blank" rel="noopener noreferrer">
                 <Button className="bg-green-600 hover:bg-green-700 text-white rounded-xl">
                   <MessageCircle className="h-4 w-4 mr-2" />
                   WhatsApp Confirm
@@ -171,6 +184,12 @@ export default function AppointmentModal({ open, onOpenChange }: AppointmentModa
 
             {/* Step Content */}
             <div className="p-6">
+              {submitError && (
+                <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-xl text-sm text-red-700 flex items-center gap-2">
+                  <AlertCircle className="h-4 w-4 flex-shrink-0" />
+                  {submitError}
+                </div>
+              )}
               <AnimatePresence mode="wait">
                 {step === 0 && (
                   <motion.div
@@ -279,7 +298,7 @@ export default function AppointmentModal({ open, onOpenChange }: AppointmentModa
                         type="date"
                         value={formData.date}
                         onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                        min={new Date().toISOString().split("T")[0]}
+                        min={mountedMinDate || undefined}
                         className="rounded-xl border-teal-200 focus:border-teal-500 focus:ring-teal-500"
                       />
                     </div>

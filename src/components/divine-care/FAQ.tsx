@@ -231,7 +231,7 @@ export default function FAQ() {
                 Pehli consultation FREE hai — koi bhi sawaal poochein, bina kisi obligation ke.
               </p>
               <div className="flex flex-wrap gap-3 justify-center">
-                <a href="https://wa.me/9431757875" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/919431757875" target="_blank" rel="noopener noreferrer">
                   <Button className="bg-teal-600 hover:bg-teal-700 text-white rounded-xl shadow-md btn-hover-scale">
                     <MessageCircle className="h-4 w-4 mr-2" />
                     WhatsApp Pe Poochein

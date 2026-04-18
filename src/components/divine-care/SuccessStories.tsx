@@ -105,11 +105,21 @@ export default function SuccessStories() {
     return stopAutoPlay;
   }, [isAutoPlaying, startAutoPlay, stopAutoPlay]);
 
+  const resumeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   const goTo = (index: number) => {
     setCurrent(index);
     setIsAutoPlaying(false);
-    setTimeout(() => setIsAutoPlaying(true), 10000);
+    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+    resumeTimerRef.current = setTimeout(() => setIsAutoPlaying(true), 10000);
   };
+
+  // Cleanup resume timer on unmount
+  useEffect(() => {
+    return () => {
+      if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+    };
+  }, []);
 
   const goPrev = () => goTo((current - 1 + stories.length) % stories.length);
   const goNext = () => goTo((current + 1) % stories.length);
@@ -308,7 +318,7 @@ export default function SuccessStories() {
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
                 <a
-                  href="https://wa.me/9431757875"
+                  href="https://wa.me/919431757875"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

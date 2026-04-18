@@ -486,7 +486,7 @@ export default function VirtualTour() {
         >
           <p className="text-teal-600 mb-4">Clinic dekh kar aapko aur confidence hoga!</p>
           <div className="flex flex-wrap gap-3 justify-center">
-            <a href="https://wa.me/9431757875" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/919431757875" target="_blank" rel="noopener noreferrer">
               <Button className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white rounded-xl shadow-lg btn-hover-scale">
                 <MessageCircle className="h-4 w-4 mr-2" />
                 Visit Karne Ka Time Lein

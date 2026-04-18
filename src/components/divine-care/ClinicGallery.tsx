@@ -158,7 +158,7 @@ export default function ClinicGallery() {
               Walk-in welcome hain — Mon-Sat, 9AM-8PM. Aakar dekhein ki humari facilities kaisi hain, Dr. Vikas se baat karein — koi obligation nahi.
             </p>
             <div className="flex flex-wrap gap-3">
-              <a href="https://wa.me/9431757875" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/919431757875" target="_blank" rel="noopener noreferrer">
                 <Button className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white rounded-xl shadow-lg btn-hover-scale">
                   <MessageCircle className="h-4 w-4 mr-2" />
                   Schedule a Visit

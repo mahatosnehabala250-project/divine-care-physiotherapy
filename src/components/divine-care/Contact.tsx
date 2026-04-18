@@ -263,7 +263,7 @@ export default function Contact() {
                     <div className="w-2 h-2 bg-green-500 rounded-full pulse-dot" />
                     <p className="text-sm text-teal-600 font-medium">Ya phir directly WhatsApp karein:</p>
                   </div>
-                  <a href="https://wa.me/9431757875" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/919431757875" target="_blank" rel="noopener noreferrer">
                     <Button className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white rounded-xl shadow-md btn-hover-scale">
                       <MessageCircle className="h-4 w-4 mr-2" />
                       WhatsApp Pe Message Karein

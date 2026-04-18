@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import {
   Phone, Mail, MapPin, MessageCircle, Heart, Clock,
@@ -31,19 +31,28 @@ const socialLinks = [
   { icon: Instagram, label: "Instagram", href: "https://instagram.com/divinecarejsr" },
   { icon: Facebook, label: "Facebook", href: "https://facebook.com/divinecarejsr" },
   { icon: Youtube, label: "YouTube", href: "https://youtube.com/@divinecarejsr" },
-  { icon: MessageCircle, label: "WhatsApp", href: "https://wa.me/9431757875" },
+  { icon: MessageCircle, label: "WhatsApp", href: "https://wa.me/919431757875" },
 ];
 
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
+  const subscribeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Cleanup timer on unmount
+  useEffect(() => {
+    return () => {
+      if (subscribeTimerRef.current) clearTimeout(subscribeTimerRef.current);
+    };
+  }, []);
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
     if (email.trim()) {
       setSubscribed(true);
       setEmail("");
-      setTimeout(() => setSubscribed(false), 3000);
+      if (subscribeTimerRef.current) clearTimeout(subscribeTimerRef.current);
+      subscribeTimerRef.current = setTimeout(() => setSubscribed(false), 3000);
     }
   };
 
@@ -159,7 +168,7 @@ export default function Footer() {
 
               {/* WhatsApp quick link */}
               <a
-                href="https://wa.me/9431757875"
+                href="https://wa.me/919431757875"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-sm text-green-400 hover:text-green-300 transition-colors"
@@ -262,7 +271,7 @@ export default function Footer() {
           
           <div className="flex flex-wrap items-center justify-between gap-3 pb-6">
             <p className="text-sm text-teal-400">
-              © {new Date().getFullYear()} Divine Care Physiotherapy Acupuncture & Hijama Centre. All rights reserved.
+              © <span suppressHydrationWarning>{new Date().getFullYear()}</span> Divine Care Physiotherapy Acupuncture & Hijama Centre. All rights reserved.
             </p>
             <div className="flex items-center gap-5">
               {/* Back to top button */}

@@ -369,7 +369,7 @@ export default function DoctorMessage() {
 
             {/* CTA */}
             <div className="flex flex-wrap gap-3 pt-2">
-              <a href="https://wa.me/9431757875" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/919431757875" target="_blank" rel="noopener noreferrer">
                 <Button className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white rounded-xl px-7 h-12 shadow-lg shadow-teal-600/20 hover:shadow-xl transition-all">
                   <Phone className="h-4 w-4 mr-2" />
                   Consult Dr. Vikas Today

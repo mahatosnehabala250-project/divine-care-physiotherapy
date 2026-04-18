@@ -165,7 +165,7 @@ export default function TreatmentComparison() {
                 Dr. Vikas ke paas 500+ patients ka experience hai. Agar unka assessment kehta hai ki surgery zaruri hai, toh woh honestly bataenge. Lekin 90% cases mein — <strong>natural treatment kaam karta hai!</strong>
               </p>
               <div className="flex flex-wrap gap-3 justify-center">
-                <a href="https://wa.me/9431757875" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/919431757875" target="_blank" rel="noopener noreferrer">
                   <Button size="lg" className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white rounded-2xl px-8 h-12 shadow-xl shadow-teal-600/20 btn-hover-scale">
                     <MessageCircle className="h-5 w-5 mr-2" />
                     Free Mein Consult Karein

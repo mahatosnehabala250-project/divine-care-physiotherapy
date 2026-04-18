@@ -32,7 +32,7 @@ export default function WhatsAppButton() {
         <span className="absolute inset-0 w-14 h-14 rounded-full bg-green-400/20 animate-ping" style={{ animationDuration: '2s', animationDelay: '0.5s' }} />
 
         <a
-          href="https://wa.me/9431757875"
+          href="https://wa.me/919431757875"
           target="_blank"
           rel="noopener noreferrer"
           className="relative w-14 h-14 bg-gradient-to-br from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white rounded-full shadow-2xl shadow-green-500/30 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-green-500/40"

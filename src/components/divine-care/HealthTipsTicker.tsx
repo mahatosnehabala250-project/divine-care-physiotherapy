@@ -25,7 +25,7 @@ export default function HealthTipsTicker() {
 
         {/* Scrolling content */}
         <div className="overflow-hidden flex-1 relative">
-          <div className="flex animate-marquee whitespace-nowrap">
+          <div className="flex animate-marquee whitespace-nowrap [media(prefers-reduced-motion:reduce)]:animate-none">
             {[...tips, ...tips].map((tip, i) => (
               <div key={i} className="inline-flex items-center gap-2 mx-8 text-sm text-teal-700">
                 <tip.icon className={`h-4 w-4 flex-shrink-0 ${tip.color}`} />

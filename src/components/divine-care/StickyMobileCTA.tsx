@@ -27,7 +27,7 @@ export default function StickyMobileCTA() {
           <span className="text-sm">Call Now</span>
         </a>
         <a
-          href="https://wa.me/9431757875"
+          href="https://wa.me/919431757875"
           target="_blank"
           rel="noopener noreferrer"
           className="flex-1 flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-xl transition-colors shadow-md"

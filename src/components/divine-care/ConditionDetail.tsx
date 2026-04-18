@@ -124,7 +124,7 @@ export default function ConditionDetail({
           {/* CTA */}
           <div className="pt-2">
             <a
-              href="https://wa.me/9431757875"
+              href="https://wa.me/919431757875"
               target="_blank"
               rel="noopener noreferrer"
               className="block"

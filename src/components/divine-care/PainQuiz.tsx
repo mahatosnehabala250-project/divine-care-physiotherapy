@@ -248,7 +248,7 @@ export default function PainQuiz() {
                   </div>
 
                   <div className="flex flex-wrap gap-3">
-                    <a href="https://wa.me/9431757875" target="_blank" rel="noopener noreferrer" className="flex-1">
+                    <a href="https://wa.me/919431757875" target="_blank" rel="noopener noreferrer" className="flex-1">
                       <Button className="w-full bg-teal-600 hover:bg-teal-700 text-white rounded-xl h-12 shadow-lg">
                         <MessageCircle className="h-4 w-4 mr-2" />
                         Book Appointment
