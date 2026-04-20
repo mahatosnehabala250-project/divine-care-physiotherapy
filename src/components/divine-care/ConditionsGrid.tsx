@@ -163,7 +163,7 @@ export default function ConditionsGrid() {
   const [selected, setSelected] = useState<Condition | null>(null);
 
   return (
-    <section id="conditions" className="py-20 bg-white relative" ref={ref}>
+    <section id="conditions" className="py-20 bg-white relative overflow-x-hidden w-full" ref={ref}>
       {/* Subtle decorative background with dot pattern */}
       <div className="absolute inset-0 pointer-events-none bg-pattern-dots opacity-60" />
       <div className="absolute inset-0 pointer-events-none opacity-30">

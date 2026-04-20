@@ -55,7 +55,7 @@ export default function Header({ onBookAppointment }: { onBookAppointment: () =>
   return (
     <>
       {/* Top Bar */}
-      <div className="bg-teal-800 text-white text-xs sm:text-sm">
+      <div className="bg-teal-800 text-white text-xs sm:text-sm overflow-x-hidden w-full">
         <div className="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-4 flex-wrap">
             <a href="tel:9431757875" className="flex items-center gap-1.5 hover:text-teal-200 transition-colors">
@@ -82,7 +82,7 @@ export default function Header({ onBookAppointment }: { onBookAppointment: () =>
 
       {/* Main Nav */}
       <header
-        className={`sticky top-0 z-50 transition-all duration-300 ${
+        className={`sticky top-0 z-50 transition-all duration-300 overflow-x-hidden w-full ${
           scrolled
             ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-teal-100"
             : "bg-white shadow-sm"

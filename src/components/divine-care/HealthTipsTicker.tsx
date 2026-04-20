@@ -15,7 +15,7 @@ const tips = [
 
 export default function HealthTipsTicker() {
   return (
-    <div className="bg-gradient-to-r from-teal-50 to-amber-50 border-y border-teal-100 py-3 overflow-hidden">
+    <div className="bg-gradient-to-r from-teal-50 to-amber-50 border-y border-teal-100 py-3 overflow-hidden w-full">
       <div className="flex items-center">
         {/* Static label */}
         <div className="flex-shrink-0 flex items-center gap-2 px-4 bg-teal-600 text-white text-xs font-bold uppercase tracking-wider py-1.5 rounded-r-full z-10">

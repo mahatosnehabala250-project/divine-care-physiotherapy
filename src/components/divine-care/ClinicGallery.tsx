@@ -79,7 +79,7 @@ export default function ClinicGallery() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-20 bg-white relative" ref={ref}>
+    <section className="py-20 bg-white relative overflow-x-hidden w-full" ref={ref}>
       {/* Subtle decorative background */}
       <div className="absolute inset-0 pointer-events-none opacity-20">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-teal-100 rounded-full blur-[120px]" />

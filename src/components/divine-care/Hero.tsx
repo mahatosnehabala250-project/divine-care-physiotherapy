@@ -6,7 +6,7 @@ import { Phone, MessageCircle, ArrowDown, Shield, Users, Award, Clock, Star } fr
 
 export default function Hero({ onBookAppointment }: { onBookAppointment: () => void }) {
   return (
-    <section id="home" className="relative min-h-[92vh] flex items-center overflow-hidden">
+    <section id="home" className="relative min-h-[92vh] flex items-center overflow-hidden w-full">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img

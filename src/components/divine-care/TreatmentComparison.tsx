@@ -65,7 +65,7 @@ export default function TreatmentComparison() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-20 bg-gradient-to-b from-teal-50/30 to-white relative" ref={ref}>
+    <section className="py-20 bg-gradient-to-b from-teal-50/30 to-white relative overflow-x-hidden w-full" ref={ref}>
       {/* Decorative background */}
       <div className="absolute inset-0 pointer-events-none opacity-30">
         <div className="absolute top-10 right-10 w-80 h-80 bg-amber-200 rounded-full blur-[120px]" />

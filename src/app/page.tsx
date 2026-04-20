@@ -45,7 +45,7 @@ export default function Home() {
   const [appointmentOpen, setAppointmentOpen] = useState(false);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col w-full max-w-full overflow-x-hidden">
       <JsonLd />
       <ScrollProgress />
       <PageNavDots />

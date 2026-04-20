@@ -107,7 +107,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-b from-teal-50/50 via-white to-teal-50/30 relative" ref={ref}>
+    <section id="contact" className="py-20 bg-gradient-to-b from-teal-50/50 via-white to-teal-50/30 relative overflow-x-hidden w-full" ref={ref}>
       {/* Decorative background */}
       <div className="absolute inset-0 pointer-events-none opacity-30">
         <div className="absolute top-10 right-0 w-80 h-80 bg-teal-200 rounded-full blur-[120px]" />

@@ -523,3 +523,45 @@ Stage Summary:
 - Added `devIndicators: false` to next.config.ts
 - Page now shows only the intended floating buttons (WhatsApp, QuickConsult, BackToTop)
 - No more development overlays visible on the page
+
+---
+Task ID: 18
+Agent: Responsive Fix Agent
+Task: Fix mobile responsive overflow - content not fitting viewport width when zooming out on mobile
+
+Work Log:
+- User reported critical mobile issue: white space on sides when zooming out, content doesn't stretch to fill viewport
+- Read all 12 component files to audit current overflow/width classes
+- Found the following issues:
+
+AUDIT RESULTS:
+1. ClinicGallery.tsx - section had NO overflow class, NO w-full → Added `overflow-x-hidden w-full`
+2. TreatmentComparison.tsx - section had NO overflow class, NO w-full → Added `overflow-x-hidden w-full`
+3. FAQ.tsx - section had NO overflow class, NO w-full → Added `overflow-x-hidden w-full`
+4. Contact.tsx - section had NO overflow class, NO w-full → Added `overflow-x-hidden w-full`
+5. Hero.tsx - section had `overflow-hidden` (covers both x and y) but NO w-full → Added `w-full`
+6. HealthTipsTicker.tsx - wrapper div had `overflow-hidden` but NO w-full → Added `w-full` (marquee content was potential horizontal overflow source)
+7. Header.tsx - top bar div had NO overflow class, NO w-full → Added `overflow-x-hidden w-full`; header element had NO overflow class, NO w-full → Added `overflow-x-hidden w-full`
+8. Footer.tsx - footer had `overflow-hidden` but NO w-full → Added `w-full`
+9. AppointmentModal.tsx - uses Dialog overlay, no section element → No changes needed (modal is positioned fixed, not contributing to page overflow)
+10. ConditionsGrid.tsx - section had NO overflow class, NO w-full → Added `overflow-x-hidden w-full`
+11. Testimonial.tsx - section had NO overflow class, NO w-full → Added `overflow-x-hidden w-full`
+12. BodyMap.tsx - section had `overflow-hidden` but NO w-full → Added `w-full`; also fixed SVG container: added `max-w-full overflow-hidden` to glass container div, changed SVG from fixed `w-[280px] sm:w-[320px]` to responsive `w-full max-w-[320px]`
+
+CHANGES SUMMARY:
+- 10 files edited
+- 8 sections got `overflow-x-hidden` added (ClinicGallery, TreatmentComparison, FAQ, Contact, ConditionsGrid, Testimonial, Header top bar, Header nav)
+- 11 elements got `w-full` added (all sections + HealthTipsTicker + Header top bar + Header element + Footer)
+- BodyMap SVG made responsive with `w-full max-w-[320px]` instead of fixed pixel widths
+- BodyMap glass container got `max-w-full overflow-hidden` to prevent SVG overflow
+- No visual styling or functionality changes - only overflow/width constraints added
+- Lint: passes clean (0 errors)
+
+Stage Summary:
+- Fixed mobile responsive overflow issue across ALL section components
+- Every section/wrapper now has either `overflow-x-hidden` or `overflow-hidden` + `w-full`
+- HealthTipsTicker marquee properly contained with overflow-hidden + w-full
+- BodyMap SVG diagram made responsive (no longer extends beyond viewport on small screens)
+- Header and Footer both properly constrained to viewport width
+- AppointmentModal (Dialog overlay) confirmed not contributing to overflow issue
+- All lint checks pass

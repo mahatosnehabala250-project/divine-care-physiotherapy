@@ -61,7 +61,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-teal-900 text-teal-100 mt-auto relative overflow-hidden">
+    <footer className="bg-teal-900 text-teal-100 mt-auto relative overflow-hidden w-full">
       {/* Decorative top gradient wave */}
       <div className="h-2 bg-gradient-to-r from-teal-400 via-amber-400 to-teal-400" />
       {/* Subtle diagonal pattern overlay */}

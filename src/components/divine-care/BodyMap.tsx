@@ -393,7 +393,7 @@ export default function BodyMap() {
   return (
     <section
       id="body-map"
-      className="py-20 bg-gradient-to-b from-teal-50/30 to-white relative overflow-hidden"
+      className="py-20 bg-gradient-to-b from-teal-50/30 to-white relative overflow-hidden w-full"
       ref={sectionRef}
     >
       {/* Decorative background */}
@@ -440,7 +440,7 @@ export default function BodyMap() {
             className="relative flex justify-center"
           >
             {/* Glass container */}
-            <div className="relative bg-white/60 backdrop-blur-xl border-2 border-teal-100/60 rounded-3xl shadow-xl shadow-teal-900/5 p-6 sm:p-10">
+            <div className="relative bg-white/60 backdrop-blur-xl border-2 border-teal-100/60 rounded-3xl shadow-xl shadow-teal-900/5 p-6 sm:p-10 max-w-full overflow-hidden">
               {/* Instruction hint */}
               <motion.div
                 initial={{ opacity: 0 }}
@@ -457,7 +457,7 @@ export default function BodyMap() {
               <div className="relative">
                 <svg
                   viewBox="0 0 300 440"
-                  className="w-[280px] sm:w-[320px] h-auto mx-auto"
+                  className="w-full max-w-[320px] h-auto mx-auto"
                   role="img"
                   aria-label="Interactive human body map showing clickable regions for different pain conditions"
                 >

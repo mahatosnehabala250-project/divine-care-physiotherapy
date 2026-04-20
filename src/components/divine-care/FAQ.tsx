@@ -93,7 +93,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="py-20 bg-gradient-to-b from-white via-teal-50/20 to-white relative" ref={ref}>
+    <section id="faq" className="py-20 bg-gradient-to-b from-white via-teal-50/20 to-white relative overflow-x-hidden w-full" ref={ref}>
       {/* Decorative background */}
       <div className="absolute inset-0 pointer-events-none opacity-30">
         <div className="absolute top-20 left-10 w-72 h-72 bg-amber-200 rounded-full blur-[120px]" />
